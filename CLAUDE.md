@@ -343,6 +343,19 @@ ETHERSCAN_API_KEY=           # On-chain Mint/Burn cross-reference
 
 ---
 
+## Task Tracking
+
+All project work is tracked in **`TASKS.md`** at the repo root. This is the master task list.
+
+**Claude must follow these rules without exception:**
+- When any task in `TASKS.md` is completed, immediately edit `TASKS.md` to mark it `[x]`
+- Update the `Progress Tracker` table at the bottom of `TASKS.md` when a phase is fully complete
+- Update the `Last updated` date in `TASKS.md` whenever the file is modified
+- Never mark a task complete unless the implementation is verified and working
+- If a new sub-task is discovered during implementation, add it to `TASKS.md` before starting it
+
+---
+
 ## Conventions
 
 - Commit messages: `feat:`, `fix:`, `chore:`, `docs:` prefixes
