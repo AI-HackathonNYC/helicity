@@ -4,7 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>(slides) — katabatic.</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5/index.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.css">
 <style>
 /* ── Tokens ── */
@@ -36,7 +39,6 @@
   --r:           16px;
   --r-lg:        24px;
   --font:        'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --mono:        'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* ── Reset + Reveal overrides ── */
@@ -44,9 +46,9 @@ html, body {
   margin:0; padding:0; overflow:hidden;
   width:100%; height:100%;
   background:var(--bg) !important;
-  font-family:var(--font) !important;
+  font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
-*, *::before, *::after { font-family:inherit; }
+*, *::before, *::after { font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important; }
 .reveal-viewport {
   position:fixed !important; inset:0 !important;
   background:var(--bg) !important;
@@ -54,15 +56,15 @@ html, body {
   overflow:hidden !important;
 }
 .reveal {
-  font-family:var(--font); font-weight:400; color:var(--text);
+  font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-weight:400; color:var(--text);
   background:var(--bg) !important;
 }
-.reveal * { font-family:var(--font) !important; }
+.reveal * { font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important; }
 .reveal .slides { text-align:left; }
 .reveal .progress, .reveal .controls, .reveal .slide-number { display:none !important; }
 .reveal .slide-background-content { display:none !important; }
 .reveal h1,.reveal h2,.reveal h3 {
-  font-family:var(--font); text-transform:none;
+  font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif; text-transform:none;
   color:var(--text); line-height:1.1; margin:0;
 }
 .reveal section {
@@ -76,13 +78,15 @@ html, body {
 .sw {
   position:absolute; inset:0;
   display:flex; flex-direction:column;
-  justify-content:flex-start; align-items:stretch;
+  justify-content:flex-start; align-items:stretch; gap:16px;
   box-sizing:border-box;
-  padding:3rem 4.5rem 2.5rem;
+  padding:2.5rem 4rem 2rem;
   overflow:hidden;
-  font-size:15px;
+  font-size:19px;
   background:var(--bg);
-  font-family:var(--font);
+  font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 .sw-alt { background:var(--bg-alt); }
 .sw-dark { background:var(--bg-dark); color:var(--text-dark); }
@@ -104,16 +108,16 @@ html, body {
 .ey {
   font-size:0.7rem; font-weight:600; text-transform:uppercase;
   letter-spacing:0.12em; color:var(--accent);
-  display:flex; align-items:center; gap:8px; margin-bottom:12px;
+  display:flex; align-items:center; gap:8px; margin-bottom:4px;
 }
 .ey::before {
   content:''; display:inline-block; width:20px; height:2px;
   background:var(--accent); border-radius:2px; flex-shrink:0;
 }
 .h2 {
-  font-size:clamp(1.7rem, 2.8vw, 2.4rem); font-weight:700;
-  line-height:1.1; letter-spacing:-0.025em;
-  color:var(--text); margin:0 0 44px;
+  font-size:clamp(1.9rem, 3vw, 2.6rem); font-weight:700;
+  line-height:1.12; letter-spacing:-0.028em;
+  color:var(--text); margin:0;
 }
 .h2-dark { color:var(--text-dark) !important; }
 .em  { color:var(--accent); }
@@ -143,7 +147,7 @@ html, body {
   border:1px solid var(--border);
   border-radius:var(--r-lg);
   box-shadow:var(--shadow);
-  padding:1.25rem 1.5rem;
+  padding:1.6rem 1.8rem;
 }
 .card-feat {
   border-color:var(--accent);
@@ -172,9 +176,9 @@ html, body {
 }
 
 /* ── Grid layouts ── */
-.g2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start; align-content:start; }
-.g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; align-items:start; align-content:start; }
-.g32 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; align-items:start; align-content:start; }
+.g2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:stretch; align-content:start; }
+.g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; align-items:stretch; align-content:start; }
+.g32 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; align-items:stretch; align-content:start; }
 
 /* ── Stats ── */
 .stat-n {
@@ -185,7 +189,7 @@ html, body {
   font-size:0.7rem; font-weight:500; text-transform:uppercase;
   letter-spacing:0.1em; color:var(--text-3); margin-bottom:6px;
 }
-.stat-d { font-size:0.875rem; color:var(--text-2); line-height:1.55; margin-top:6px; }
+.stat-d { font-size:1rem; color:var(--text-2); line-height:1.7; margin-top:8px; }
 
 /* ── Card label ── */
 .clabel {
@@ -195,16 +199,16 @@ html, body {
 .clabel-a { color:var(--accent); }
 
 /* ── Body text in cards ── */
-.ct { font-size:0.875rem; color:var(--text-2); line-height:1.6; }
-.ct-dark { font-size:0.875rem; color:var(--text-dark-2); line-height:1.6; }
+.ct { font-size:1rem; color:var(--text-2); line-height:1.7; }
+.ct-dark { font-size:1rem; color:var(--text-dark-2); line-height:1.7; }
 
 /* ── Pipeline ── */
 .pipe {
   display:grid; grid-template-columns:repeat(5,1fr);
-  gap:0; margin:14px 0 12px; position:relative;
+  gap:0; margin:0; position:relative;
 }
 .pipe::before {
-  content:''; position:absolute; top:22px; left:10%; right:10%; height:1px;
+  content:''; position:absolute; top:25px; left:10%; right:10%; height:1px;
   background:linear-gradient(90deg, var(--accent-bg), rgba(108,92,231,0.2), var(--accent-bg));
 }
 .ps {
@@ -212,24 +216,24 @@ html, body {
   text-align:center; padding:0 8px; position:relative;
 }
 .ps-num {
-  width:44px; height:44px; border-radius:50%;
+  width:50px; height:50px; border-radius:50%;
   background:var(--accent); color:#fff;
-  font-size:0.875rem; font-weight:600;
+  font-size:0.9rem; font-weight:600;
   display:flex; align-items:center; justify-content:center;
-  margin-bottom:10px; flex-shrink:0; position:relative; z-index:1;
+  margin-bottom:12px; flex-shrink:0; position:relative; z-index:1;
   box-shadow:0 0 0 4px var(--bg-alt);
 }
 .sw .ps-num { box-shadow:0 0 0 4px var(--bg); }
 .sw-alt .ps-num { box-shadow:0 0 0 4px var(--bg-alt); }
-.pt { font-size:0.875rem; font-weight:600; color:var(--text); margin-bottom:4px; line-height:1.25; }
-.pd { font-size:0.8rem; color:var(--text-3); line-height:1.45; }
+.pt { font-size:1rem; font-weight:600; color:var(--text); margin-bottom:5px; line-height:1.25; }
+.pd { font-size:1rem; color:var(--text-2); line-height:1.6; }
 
 /* ── Formula block ── */
 .formula {
-  font-family:var(--mono); font-size:0.875rem; color:var(--text-2);
+  font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size:0.875rem; color:var(--text-2);
   background:var(--accent-bg); border:1px solid rgba(108,92,231,0.12);
-  border-radius:var(--r); padding:14px 18px; line-height:2;
-  margin-bottom:18px;
+  border-radius:var(--r); padding:12px 18px; line-height:1.8;
+  margin-bottom:12px;
 }
 .fv { color:var(--accent); font-weight:500; }
 .fo { color:var(--text-3); }
@@ -241,7 +245,7 @@ html, body {
   border-radius:6px; padding:1px 7px; margin-bottom:6px;
 }
 .dim-title { font-size:0.95rem; font-weight:600; color:var(--text); margin-bottom:5px; }
-.dim-desc { font-size:0.8rem; color:var(--text-2); line-height:1.55; }
+.dim-desc { font-size:1rem; color:var(--text-2); line-height:1.7; }
 
 /* ── Timeline ── */
 .tl { display:flex; flex-direction:column; gap:0; }
@@ -257,13 +261,13 @@ html, body {
 .tli-dot.active { background:var(--accent); }
 .tli-dot.done { background:var(--success); border-color:var(--success); }
 .tli-date { font-size:0.7rem; color:var(--text-3); min-width:72px; font-weight:500; padding-top:2px; }
-.tli-txt { font-size:0.875rem; color:var(--text-2); line-height:1.5; }
+.tli-txt { font-size:1rem; color:var(--text-2); line-height:1.7; }
 .tli-txt strong { color:var(--text); font-weight:600; }
 
 /* ── Checklist ── */
 .chk { display:flex; align-items:center; gap:8px; padding:4px 0; }
 .chk-v { color:var(--success); font-size:0.875rem; font-weight:600; }
-.chk span { font-size:0.875rem; color:var(--text-2); line-height:1.4; }
+.chk span { font-size:1rem; color:var(--text-2); line-height:1.6; }
 
 /* ── Layer stack cards ── */
 .layer-card {
@@ -282,15 +286,17 @@ html, body {
 }
 .layer-num-a { color:var(--accent); }
 .layer-title { font-size:0.95rem; font-weight:600; color:var(--text); margin-bottom:5px; }
-.layer-desc { font-size:0.8rem; color:var(--text-2); line-height:1.5; }
+.layer-desc { font-size:1rem; color:var(--text-2); line-height:1.7; }
 .layer-tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:8px; }
 .layer-tag {
-  font-size:0.7rem; color:var(--text-3);
+  font-size:0.75rem; color:var(--text-2);
   background:var(--bg-alt); border-radius:6px;
   padding:2px 8px; font-weight:500;
 }
 .layer-tag-a {
+  font-size:0.75rem; font-weight:500;
   color:var(--accent); background:var(--accent-bg);
+  border-radius:6px; padding:2px 8px;
 }
 
 /* ── Scenario cards ── */
@@ -298,8 +304,8 @@ html, body {
   font-size:0.7rem; font-weight:600; text-transform:uppercase;
   letter-spacing:0.1em; color:var(--text-3); margin-bottom:5px;
 }
-.scn-title { font-size:1rem; font-weight:600; color:var(--text); margin-bottom:5px; line-height:1.2; }
-.scn-sub { font-size:0.875rem; color:var(--text-2); line-height:1.5; }
+.scn-title { font-size:0.95rem; font-weight:600; color:var(--text); margin-bottom:5px; line-height:1.2; }
+.scn-sub { font-size:1rem; color:var(--text-2); line-height:1.7; }
 
 /* ── Beat items ── */
 .beat {
@@ -313,7 +319,7 @@ html, body {
   font-size:0.7rem; font-weight:700;
   display:flex; align-items:center; justify-content:center; flex-shrink:0;
 }
-.beat-txt { font-size:0.875rem; color:var(--text-2); line-height:1.45; }
+.beat-txt { font-size:1rem; color:var(--text-2); line-height:1.7; }
 .beat-txt strong { color:var(--text); font-weight:600; }
 
 /* ── Pills ── */
@@ -329,8 +335,8 @@ html, body {
   font-size:0.7rem; font-weight:600; text-transform:uppercase;
   letter-spacing:0.1em; color:var(--text-3); margin-bottom:8px;
 }
-.phase-title { font-size:1rem; font-weight:600; color:var(--text); margin-bottom:8px; }
-.phase-desc { font-size:0.8rem; color:var(--text-2); line-height:1.55; }
+.phase-title { font-size:0.95rem; font-weight:600; color:var(--text); margin-bottom:8px; }
+.phase-desc { font-size:1rem; color:var(--text-2); line-height:1.7; }
 
 /* ── Output badge ── */
 .obadge {
@@ -338,7 +344,7 @@ html, body {
   background:rgba(0,184,148,0.08); border:1px solid rgba(0,184,148,0.22);
   border-radius:8px; padding:4px 11px;
   font-size:0.7rem; font-weight:500; color:var(--success);
-  font-family:var(--mono); letter-spacing:normal;
+  font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif; letter-spacing:normal;
 }
 .obadge::before { content:'●'; font-size:7px; animation:pulse 2s ease-in-out infinite; }
 
@@ -404,7 +410,7 @@ html, body {
   display:flex; align-items:center; justify-content:space-between;
   padding:0 18px; height:34px;
   background:rgba(250,250,250,0.96); backdrop-filter:blur(20px);
-  border-top:1px solid var(--border); font-family:var(--font);
+  border-top:1px solid var(--border); font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   transition:opacity .3s, transform .3s;
 }
 .pbar.hidden { opacity:0; transform:translateY(100%); pointer-events:none; }
@@ -416,7 +422,7 @@ body.fs .snotes { display:none !important; }
 .pbar-btn {
   background:rgba(108,92,231,0.07); border:1px solid rgba(108,92,231,0.12);
   cursor:pointer; color:var(--accent); font-size:13px; padding:2px 10px;
-  font-family:var(--font); border-radius:8px; transition:all .15s; font-weight:500;
+  font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif; border-radius:8px; transition:all .15s; font-weight:500;
 }
 .pbar-btn:hover { background:rgba(108,92,231,0.14); }
 .pbar-cnt { font-size:0.7rem; font-weight:500; color:var(--text-3); letter-spacing:0.06em; }
@@ -428,15 +434,21 @@ body.fs .snotes { display:none !important; }
   font-size:0.7rem; color:var(--text-3); min-width:40px; text-align:center;
   padding:2px 7px; border-radius:6px; background:rgba(0,0,0,0.04);
   border:1px solid rgba(0,0,0,0.06); cursor:pointer; user-select:none; font-weight:500;
-  transition:all .15s; font-family:var(--mono);
+  transition:all .15s; font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 .pbar-tmr.w { color:var(--warn); border-color:rgba(225,112,85,0.25); }
 .pbar-tmr.d { color:var(--danger); border-color:rgba(232,67,147,0.25); animation:tp 1s ease-in-out infinite; }
 @keyframes tp { 0%,100%{opacity:1} 50%{opacity:.5} }
+@keyframes drawLine { to { stroke-dashoffset: 0; } }
+@keyframes svgFadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes barGrow  { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+@keyframes barGrowY { from { transform:scaleY(0); } to { transform:scaleY(1); } }
+@keyframes nodePop  { from { transform:scale(0.4); opacity:0; } to { transform:scale(1); opacity:1; } }
+.depeg-line { stroke-dasharray:500; stroke-dashoffset:500; animation:drawLine 2s ease-out forwards 0.3s; }
 .pbar-fs {
   background:rgba(0,0,0,0.04); border:1px solid rgba(0,0,0,0.07);
   cursor:pointer; color:var(--text-3); font-size:0.7rem;
-  font-family:var(--mono); padding:2px 8px; border-radius:5px;
+  font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif; padding:2px 8px; border-radius:5px;
   letter-spacing:0.1em; transition:all .15s;
 }
 .pbar-fs:hover { background:var(--accent-bg); color:var(--accent); }
@@ -446,13 +458,13 @@ body.fs .snotes { display:none !important; }
   position:fixed; bottom:38px; left:16px; right:16px; z-index:8999;
   background:rgba(250,250,250,0.97); border:1px solid var(--border);
   border-radius:12px; padding:10px 14px;
-  font-family:var(--font); font-size:0.8rem; color:var(--text-2);
+  font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size:0.8rem; color:var(--text-2);
   line-height:1.55; max-height:110px; overflow-y:auto; display:none;
   backdrop-filter:blur(20px); box-shadow:var(--shadow-lg);
 }
 .snotes.vis { display:block; }
 .snotes strong { color:var(--accent); font-weight:600; }
-.snotes .nt { font-family:var(--mono); font-size:0.7rem; color:var(--text-3); letter-spacing:0.06em; margin-bottom:4px; display:block; }
+.snotes .nt { font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size:0.7rem; color:var(--text-3); letter-spacing:0.06em; margin-bottom:4px; display:block; }
 
 /* ── Misc ── */
 .sep { border:none; border-top:1px solid var(--border); margin:10px 0; }
@@ -596,15 +608,15 @@ body.fs .snotes { display:none !important; }
   <div class="ey">The Problem</div>
   <h2 class="h2">$150B in stablecoins.<br>No <span class="emr">stress testing.</span></h2>
 
-  <div class="card-danger" style="margin-top:14px;margin-bottom:14px;">
+  <div class="card-danger">
     <div style="display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
       <div style="flex-shrink:0;">
         <div style="font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:rgba(108,92,231,0.6);margin-bottom:4px;">SVB · March 2023</div>
         <div style="font-size:2.4rem;font-weight:700;color:var(--accent);letter-spacing:-0.03em;line-height:1;">$3.3B</div>
-        <div style="font-size:0.8rem;color:var(--text-3);margin-top:3px;">USDC reserves at Silicon Valley Bank</div>
+        <div style="font-size:1rem;color:var(--text-2);margin-top:3px;">USDC reserves at Silicon Valley Bank</div>
       </div>
       <div style="flex:1;min-width:180px;">
-        <div style="font-size:0.95rem;color:var(--text-2);line-height:1.65;">
+        <div style="font-size:1rem;color:var(--text-2);line-height:1.7;">
           Attestation said <strong style="color:var(--text);">fine</strong> two weeks prior.<br>
           USDC depegged to <strong style="color:var(--accent);">$0.87.</strong><br>
           Invisible until it wasn't.
@@ -615,8 +627,8 @@ body.fs .snotes { display:none !important; }
       </div>
       <div style="flex-shrink:0;border-left:1px solid rgba(108,92,231,0.2);padding-left:18px;">
         <div style="font-size:0.7rem;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;color:rgba(108,92,231,0.5);margin-bottom:5px;">Attestation said:</div>
-        <div style="font-size:0.875rem;color:var(--text-3);line-height:1.6;font-weight:400;">"Held at a US-regulated<br>bank with $100B+ assets"</div>
-        <div style="font-size:0.8rem;color:rgba(108,92,231,0.6);margin-top:5px;font-family:var(--mono);">→ envelope, not data</div>
+        <div style="font-size:1rem;color:var(--text-3);line-height:1.6;font-weight:400;">"Held at a US-regulated<br>bank with $100B+ assets"</div>
+        <div style="font-size:1rem;color:var(--accent);margin-top:5px;">→ envelope, not data</div>
       </div>
     </div>
   </div>
@@ -638,6 +650,43 @@ body.fs .snotes { display:none !important; }
       <div class="stat-d">Rate shocks, bank failures, hurricanes — all invisible between monthly snapshots. Zero continuous risk monitors exist today.</div>
     </div>
   </div>
+
+  <!-- Depeg sparkline -->
+  <div class="card" style="padding:0.9rem 1.5rem;display:flex;align-items:center;gap:20px;flex-shrink:0;">
+    <div style="flex-shrink:0;">
+      <div style="font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-3);margin-bottom:4px;">USDC peg · SVB collapse · Mar 2023</div>
+      <div style="font-size:1.5rem;font-weight:700;color:var(--accent);letter-spacing:-0.03em;line-height:1.1;">$1.00 → $0.87</div>
+      <div style="font-size:0.72rem;color:var(--text-3);margin-top:3px;">−13¢ in 48 hours</div>
+    </div>
+    <div id="depeg-anim" style="flex:1;position:relative;height:54px;">
+      <svg width="100%" height="54" viewBox="0 0 400 54" preserveAspectRatio="none" style="overflow:visible;">
+        <defs>
+          <linearGradient id="dg1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="rgba(108,92,231,0.13)"/>
+            <stop offset="100%" stop-color="rgba(108,92,231,0)"/>
+          </linearGradient>
+        </defs>
+        <line x1="0" y1="4" x2="400" y2="4" stroke="var(--border-alt)" stroke-width="1"/>
+        <line x1="0" y1="50" x2="400" y2="50" stroke="var(--border-alt)" stroke-width="1"/>
+        <polygon points="0,4 230,4 270,15 310,50 350,37 400,14 400,54 0,54" fill="url(#dg1)" style="opacity:0;animation:svgFadeIn 0.5s ease forwards 1.8s;"/>
+        <polyline class="depeg-line" points="0,4 230,4 270,15 310,50 350,37 400,14" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;">
+        <!-- SVB event dot — HTML div so it stays circular regardless of SVG aspect ratio -->
+        <div style="position:absolute;left:67.5%;top:27.8%;width:9px;height:9px;border-radius:50%;background:var(--warn);border:2px solid #fff;transform:translate(-50%,-50%);opacity:0;animation:svgFadeIn 0.3s ease forwards 1.5s;"></div>
+        <!-- Low point dot -->
+        <div style="position:absolute;left:77.5%;top:92.6%;width:9px;height:9px;border-radius:50%;background:var(--accent);border:2px solid #fff;transform:translate(-50%,-50%);opacity:0;animation:svgFadeIn 0.3s ease forwards 2s;"></div>
+        <!-- Labels -->
+        <div style="position:absolute;top:8px;left:69%;font-size:0.6rem;color:var(--warn);font-weight:600;white-space:nowrap;opacity:0;animation:svgFadeIn 0.3s ease forwards 1.5s;">SVB fails</div>
+        <div style="position:absolute;top:30px;left:79%;font-size:0.6rem;color:var(--accent);font-weight:600;white-space:nowrap;opacity:0;animation:svgFadeIn 0.3s ease forwards 2s;">$0.87 low</div>
+      </div>
+    </div>
+    <div style="flex-shrink:0;text-align:right;border-left:1px solid var(--border);padding-left:16px;">
+      <div style="font-size:0.72rem;font-weight:600;color:var(--accent);">Katabatic</div>
+      <div style="font-size:0.72rem;color:var(--text-3);">flags critical</div>
+      <div style="font-size:0.72rem;color:var(--text);font-weight:600;">48h prior</div>
+    </div>
+  </div>
 </div>
 </section>
 
@@ -650,14 +699,14 @@ body.fs .snotes { display:none !important; }
   <div class="ey">Stress Engine</div>
   <h2 class="h2">From opaque PDF to <span class="em">real-time liquidity stress score.</span></h2>
 
-  <div class="card" style="background:var(--accent-bg);border-color:rgba(108,92,231,0.12);margin-top:14px;margin-bottom:14px;">
-    <div style="font-size:0.875rem;color:var(--text-2);line-height:1.65;">
+  <div class="card" style="background:var(--accent-bg);border-color:rgba(108,92,231,0.12);">
+    <div style="font-size:1rem;color:var(--text-2);line-height:1.7;">
       Attestations say <em style="color:var(--text-3);">"US-regulated bank with $100B+ in assets"</em> — that's an envelope, not data.
       We treat them as <strong style="color:var(--accent);">inference puzzles</strong> — cross-referencing vague disclosures against FDIC Call Reports and on-chain Mint/Burn flows to infer the actual counterparty.
     </div>
   </div>
 
-  <div class="pipe">
+  <div class="pipe" style="margin:0;">
     <div class="ps">
       <div class="ps-num">01</div>
       <div class="pt">Resolve Entities</div>
@@ -685,7 +734,7 @@ body.fs .snotes { display:none !important; }
     </div>
   </div>
 
-  <div class="card" style="margin-top:14px;">
+  <div class="card">
     <div class="out-row">
       <div class="out-item">
         <div class="out-label">Stress Score</div>
@@ -724,7 +773,7 @@ body.fs .snotes { display:none !important; }
     <span class="fo"> × </span><span class="fv">Concentration Factor</span>
   </div>
 
-  <div class="g32" style="grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto;">
+  <div class="g32" style="grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto;margin-top:8px;">
     <div class="card card-feat">
       <div class="dim-wt">30% · Primary</div>
       <div class="dim-title">Duration Risk (WAM)</div>
@@ -794,7 +843,7 @@ body.fs .snotes { display:none !important; }
     <div style="flex:1;display:flex;flex-direction:column;gap:14px;">
       <div class="card card-feat">
         <div class="clabel clabel-a">Why hasn't someone done this before?</div>
-        <div style="font-size:0.95rem;color:var(--text);line-height:1.65;font-weight:400;margin-bottom:10px;">
+        <div style="font-size:1rem;color:var(--text);line-height:1.7;font-weight:400;margin-bottom:10px;">
           The data didn't exist.<br>
           <span style="color:var(--accent);font-weight:600;">Now it does.</span><br>
           We're first in a regulation-mandated market.
@@ -860,20 +909,20 @@ body.fs .snotes { display:none !important; }
   <div style="background:var(--bg-dark);border-radius:var(--r-lg);padding:1.25rem 1.5rem;display:flex;gap:20px;align-items:start;">
     <div style="flex:1.3;border-right:1px solid var(--border-dark);padding-right:20px;">
       <div style="font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent-l);margin-bottom:8px;">The Analogy</div>
-      <div style="font-size:0.875rem;color:var(--text-dark);line-height:1.65;margin-bottom:6px;">On-chain data platforms became the system of record for what's happening on-chain — the data layer Visa and a16z integrate into their own systems.</div>
-      <div style="font-size:0.8rem;color:var(--text-dark-2);line-height:1.55;">The GENIUS Act is creating the same unlock for off-chain reserve data. We are first to build the infrastructure layer above it.</div>
+      <div style="font-size:1rem;color:var(--text-dark);line-height:1.7;margin-bottom:6px;">On-chain data platforms became the system of record for what's happening on-chain — the data layer Visa and a16z integrate into their own systems.</div>
+      <div style="font-size:1rem;color:var(--text-dark-2);line-height:1.7;">The GENIUS Act is creating the same unlock for off-chain reserve data. We are first to build the infrastructure layer above it.</div>
     </div>
     <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
       <div style="background:rgba(255,255,255,0.04);border:1px solid var(--border-dark);border-radius:12px;padding:10px 14px;">
         <div style="font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent-l);margin-bottom:5px;">Business Model</div>
-        <div style="font-size:0.875rem;color:var(--text-dark-2);line-height:1.6;">API-first · Enterprise contracts<br>Warehouse delivery · Real-time streaming</div>
+        <div style="font-size:1rem;color:var(--text-dark-2);line-height:1.7;">API-first · Enterprise contracts<br>Warehouse delivery · Real-time streaming</div>
       </div>
       <div style="background:rgba(255,255,255,0.04);border:1px solid var(--border-dark);border-radius:12px;padding:10px 14px;">
         <div style="font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent-l);margin-bottom:6px;">Defensible Moat</div>
         <div style="display:flex;flex-direction:column;gap:3px;">
-          <div class="chk"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent-l);flex-shrink:0;display:inline-block;margin-top:4px;"></span><span style="color:var(--text-dark-2);font-size:0.875rem;">WAM duration scoring engine</span></div>
-          <div class="chk"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent-l);flex-shrink:0;display:inline-block;margin-top:4px;"></span><span style="color:var(--text-dark-2);font-size:0.875rem;">Geo knowledge graph + DC ops risk</span></div>
-          <div class="chk"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent-l);flex-shrink:0;display:inline-block;margin-top:4px;"></span><span style="color:var(--text-dark-2);font-size:0.875rem;">Multi-model LLM consensus oracle layer</span></div>
+          <div class="chk"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent-l);flex-shrink:0;display:inline-block;margin-top:4px;"></span><span style="color:var(--text-dark-2);font-size:1rem;">WAM duration scoring engine</span></div>
+          <div class="chk"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent-l);flex-shrink:0;display:inline-block;margin-top:4px;"></span><span style="color:var(--text-dark-2);font-size:1rem;">Geo knowledge graph + DC ops risk</span></div>
+          <div class="chk"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent-l);flex-shrink:0;display:inline-block;margin-top:4px;"></span><span style="color:var(--text-dark-2);font-size:1rem;">Multi-model LLM consensus oracle layer</span></div>
         </div>
       </div>
     </div>
@@ -890,9 +939,9 @@ body.fs .snotes { display:none !important; }
   <div class="ey">Live Demo</div>
   <h2 class="h2">Three scenarios. <span class="em">One engine.</span></h2>
 
-  <div style="display:flex;gap:16px;align-items:start;margin-top:14px;">
-    <div style="flex:1.1;">
-      <div class="card" style="padding:1.25rem 1.5rem;">
+  <div style="display:flex;gap:16px;align-items:stretch;margin-top:14px;">
+    <div style="flex:1.1;display:flex;flex-direction:column;">
+      <div class="card" style="padding:1.25rem 1.5rem;flex:1;">
         <div class="clabel" style="margin-bottom:10px;">Demo Script · 5 Beats · &lt;2 Min</div>
         <div class="beat">
           <div class="beat-n">1</div>
@@ -911,12 +960,12 @@ body.fs .snotes { display:none !important; }
           <div class="beat-txt"><strong>SVB backtest.</strong> WAM 730 days + rate hike. "Our engine flags critical 48 hours before the $0.87 depeg."</div>
         </div>
         <div class="beat">
-          <div class="beat-n" style="background:var(--accent-l);">5</div>
+          <div class="beat-n">5</div>
           <div class="beat-txt"><strong>Close.</strong> "Not a grade. 72h latency and 88% coverage under Cat 4 + 50bps. That's what DAOs need. That's Katabatic."</div>
         </div>
       </div>
     </div>
-    <div style="flex:1;display:flex;flex-direction:column;gap:14px;">
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
       <div class="card">
         <div class="scn-cat">Scenario A · Primary Demo</div>
         <div class="scn-title">Hurricane → Data Center Ops Freeze</div>
@@ -934,6 +983,46 @@ body.fs .snotes { display:none !important; }
       </div>
     </div>
   </div>
+
+  <!-- Live output table -->
+  <div class="card" style="padding:0.8rem 1.25rem;background:var(--bg-alt);flex-shrink:0;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+      <div style="font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-3);">Live engine output · GET /api/stress-scores · Cat 4 + 50bps scenario</div>
+      <span class="obadge">LIVE</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr 1fr;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--card);">
+      <div style="padding:8px 12px;border-right:1px solid var(--border);background:rgba(0,0,0,0.015);">
+        <div style="font-size:0.58rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">stablecoin</div>
+        <div style="font-size:0.88rem;font-weight:600;color:var(--text);line-height:1.8;">USDC</div>
+        <div style="font-size:0.88rem;font-weight:600;color:var(--text-2);line-height:1.8;">USDT</div>
+        <div style="font-size:0.88rem;font-weight:600;color:var(--text-2);line-height:1.8;">FRAX</div>
+      </div>
+      <div style="padding:8px 12px;border-right:1px solid var(--border);">
+        <div style="font-size:0.58rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">stress_score</div>
+        <div style="font-size:0.88rem;font-weight:700;color:var(--warn);line-height:1.8;">68</div>
+        <div style="font-size:0.88rem;font-weight:700;color:var(--success);line-height:1.8;">31</div>
+        <div style="font-size:0.88rem;font-weight:700;color:var(--accent);line-height:1.8;">74</div>
+      </div>
+      <div style="padding:8px 12px;border-right:1px solid var(--border);">
+        <div style="font-size:0.58rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">latency_hours</div>
+        <div style="font-size:0.88rem;font-weight:600;color:var(--warn);line-height:1.8;">72h</div>
+        <div style="font-size:0.88rem;font-weight:600;color:var(--success);line-height:1.8;">&lt;4h</div>
+        <div style="font-size:0.88rem;font-weight:600;color:var(--accent);line-height:1.8;">48h</div>
+      </div>
+      <div style="padding:8px 12px;border-right:1px solid var(--border);">
+        <div style="font-size:0.58rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">coverage_ratio</div>
+        <div style="font-size:0.88rem;font-weight:600;color:var(--warn);line-height:1.8;">0.88</div>
+        <div style="font-size:0.88rem;font-weight:600;color:var(--success);line-height:1.8;">1.00</div>
+        <div style="font-size:0.88rem;font-weight:600;color:var(--accent);line-height:1.8;">0.91</div>
+      </div>
+      <div style="padding:8px 12px;">
+        <div style="font-size:0.58rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">wam_days</div>
+        <div style="font-size:0.88rem;font-weight:600;color:var(--text-2);line-height:1.8;">45d</div>
+        <div style="font-size:0.88rem;font-weight:600;color:var(--text-2);line-height:1.8;">12d</div>
+        <div style="font-size:0.88rem;font-weight:600;color:var(--text-2);line-height:1.8;">67d</div>
+      </div>
+    </div>
+  </div>
 </div>
 </section>
 
@@ -946,7 +1035,7 @@ body.fs .snotes { display:none !important; }
   <div class="ey">Future Vision</div>
   <h2 class="h2">From stress simulator to <span class="em">financial infrastructure.</span></h2>
 
-  <div class="g3" style="margin-top:14px;margin-bottom:14px;">
+  <div class="g3">
     <div class="card" style="position:relative;">
       <div class="phase-label">Phase 1 · Now</div>
       <div class="phase-title">Stress-Test Playground</div>
@@ -970,11 +1059,35 @@ body.fs .snotes { display:none !important; }
     </div>
   </div>
 
-  <div class="card" style="text-align:center;padding:10px 18px;margin-top:16px;">
-    <div style="font-size:0.875rem;color:var(--text-3);line-height:1.6;font-weight:400;">
+  <div class="card" style="text-align:center;padding:10px 18px;">
+    <div style="font-size:1rem;color:var(--text-3);line-height:1.7;font-weight:400;">
       "Bloomberg started with data terminals and became financial infrastructure.<br>
       We start with stress simulations and become the most transparent stablecoin in crypto."
     </div>
+  </div>
+
+  <!-- WAM duration comparison -->
+  <div class="card" style="padding:1rem 1.5rem;flex-shrink:0;">
+    <div style="font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-3);margin-bottom:10px;">WAM duration · the root cause signal · healthy reserve vs SVB failure</div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="font-size:0.75rem;color:var(--text-2);min-width:68px;text-align:right;font-weight:500;">USDC</div>
+        <div style="flex:1;height:20px;background:var(--bg-alt);border-radius:4px;overflow:hidden;">
+          <div style="height:100%;width:6.2%;background:var(--success);border-radius:4px;transform-origin:left center;transform:scaleX(0);animation:barGrow 0.5s ease-out forwards 0.3s;"></div>
+        </div>
+        <div style="font-size:0.75rem;font-weight:700;color:var(--success);min-width:36px;">45d</div>
+        <div style="font-size:0.65rem;color:var(--text-3);font-style:italic;">safe · daily redemptions matched</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="font-size:0.75rem;color:var(--text-2);min-width:68px;text-align:right;font-weight:500;">SVB 2023</div>
+        <div style="flex:1;height:20px;background:var(--bg-alt);border-radius:4px;overflow:hidden;">
+          <div style="height:100%;width:100%;background:var(--accent);border-radius:4px;transform-origin:left center;transform:scaleX(0);animation:barGrow 0.6s ease-out forwards 0.55s;"></div>
+        </div>
+        <div style="font-size:0.75rem;font-weight:700;color:var(--accent);min-width:36px;">730d</div>
+        <div style="font-size:0.65rem;color:var(--accent);font-weight:600;">critical · 2-yr bonds vs daily redemptions</div>
+      </div>
+    </div>
+    <div style="margin-top:8px;font-size:0.7rem;color:var(--text-3);">Katabatic computes WAM continuously — flagged SVB critical 48h before the $0.87 depeg.</div>
   </div>
 </div>
 </section>
@@ -998,7 +1111,7 @@ body.fs .snotes { display:none !important; }
           <span style="font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-3);">Starter API</span>
           <span style="font-size:1.15rem;font-weight:700;color:var(--accent);letter-spacing:-0.02em;">$500<span style="font-size:0.7rem;font-weight:400;color:var(--text-3);">/mo</span></span>
         </div>
-        <div style="font-size:0.8rem;color:var(--text-2);line-height:1.6;">REST API access · 6 stablecoins · &lt;2s re-score · 1M calls/mo</div>
+        <div style="font-size:1rem;color:var(--text-2);line-height:1.6;">REST API access · 6 stablecoins · &lt;2s re-score · 1M calls/mo</div>
       </div>
 
       <div class="card card-feat" style="padding:1rem 1.25rem;display:flex;flex-direction:column;gap:6px;">
@@ -1006,7 +1119,7 @@ body.fs .snotes { display:none !important; }
           <span style="font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);">Enterprise</span>
           <span style="font-size:1.15rem;font-weight:700;color:var(--accent);letter-spacing:-0.02em;">$5K<span style="font-size:0.7rem;font-weight:400;color:var(--text-3);">/mo</span></span>
         </div>
-        <div style="font-size:0.8rem;color:var(--text-2);line-height:1.6;">Real-time streaming · custom stablecoin onboarding · SLA · warehouse delivery</div>
+        <div style="font-size:1rem;color:var(--text-2);line-height:1.6;">Real-time streaming · custom stablecoin onboarding · SLA · warehouse delivery</div>
       </div>
 
       <div class="card" style="padding:1rem 1.25rem;display:flex;flex-direction:column;gap:6px;">
@@ -1014,7 +1127,7 @@ body.fs .snotes { display:none !important; }
           <span style="font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-3);">Institutional</span>
           <span style="font-size:1.15rem;font-weight:700;color:var(--accent);letter-spacing:-0.02em;">Custom</span>
         </div>
-        <div style="font-size:0.8rem;color:var(--text-2);line-height:1.6;">FDIC Call Report mining · oracle feed integration · dedicated scoring pipeline</div>
+        <div style="font-size:1rem;color:var(--text-2);line-height:1.6;">FDIC Call Report mining · oracle feed integration · dedicated scoring pipeline</div>
       </div>
 
     </div>
@@ -1025,23 +1138,46 @@ body.fs .snotes { display:none !important; }
       <div class="card" style="padding:1rem 1.25rem;">
         <div style="font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-3);margin-bottom:8px;">Target Customers</div>
         <div style="display:flex;flex-direction:column;gap:5px;">
-          <div style="font-size:0.8rem;color:var(--text);display:flex;align-items:center;gap:8px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;display:inline-block;"></span>DAO Treasuries — MakerDAO, Aave, Compound</div>
-          <div style="font-size:0.8rem;color:var(--text);display:flex;align-items:center;gap:8px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;display:inline-block;"></span>DeFi Protocols holding stablecoin positions</div>
-          <div style="font-size:0.8rem;color:var(--text);display:flex;align-items:center;gap:8px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;display:inline-block;"></span>Institutional Risk Desks</div>
-          <div style="font-size:0.8rem;color:var(--text);display:flex;align-items:center;gap:8px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;display:inline-block;"></span>Stablecoin Issuers — GENIUS Act compliance</div>
+          <div style="font-size:1rem;color:var(--text-2);display:flex;align-items:center;gap:8px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;display:inline-block;"></span>DAO Treasuries — MakerDAO, Aave, Compound</div>
+          <div style="font-size:1rem;color:var(--text-2);display:flex;align-items:center;gap:8px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;display:inline-block;"></span>DeFi Protocols holding stablecoin positions</div>
+          <div style="font-size:1rem;color:var(--text-2);display:flex;align-items:center;gap:8px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;display:inline-block;"></span>Institutional Risk Desks</div>
+          <div style="font-size:1rem;color:var(--text-2);display:flex;align-items:center;gap:8px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;display:inline-block;"></span>Stablecoin Issuers — GENIUS Act compliance</div>
         </div>
       </div>
 
       <div class="card" style="padding:1rem 1.25rem;">
         <div style="font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-3);margin-bottom:8px;">Moat</div>
         <div style="display:flex;flex-direction:column;gap:5px;">
-          <div style="font-size:0.8rem;color:var(--text-2);line-height:1.5;">First-mover on GENIUS Act data pipeline</div>
-          <div style="font-size:0.8rem;color:var(--text-2);line-height:1.5;">Proprietary WAM duration engine</div>
-          <div style="font-size:0.8rem;color:var(--text-2);line-height:1.5;">Multi-model LLM consensus layer</div>
-          <div style="font-size:0.8rem;color:var(--text-2);line-height:1.5;">Oracle-grade signal (Chainlink-ready)</div>
+          <div style="font-size:1rem;color:var(--text-2);display:flex;align-items:center;gap:8px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;display:inline-block;"></span>First-mover on GENIUS Act data pipeline</div>
+          <div style="font-size:1rem;color:var(--text-2);display:flex;align-items:center;gap:8px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;display:inline-block;"></span>Proprietary WAM duration engine</div>
+          <div style="font-size:1rem;color:var(--text-2);display:flex;align-items:center;gap:8px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;display:inline-block;"></span>Multi-model LLM consensus layer</div>
+          <div style="font-size:1rem;color:var(--text-2);display:flex;align-items:center;gap:8px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;display:inline-block;"></span>Oracle-grade signal (Chainlink-ready)</div>
         </div>
       </div>
 
+    </div>
+  </div>
+
+  <!-- Market growth chart -->
+  <div class="card" style="padding:1rem 1.5rem;flex-shrink:0;">
+    <div style="font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-3);margin-bottom:10px;">Stablecoin total supply — TAM · GENIUS Act creates continuous monitoring market</div>
+    <div style="display:flex;align-items:flex-end;gap:8px;height:62px;">
+      <div style="flex:1;height:14px;background:rgba(108,92,231,0.3);border-radius:3px 3px 0 0;transform-origin:center bottom;transform:scaleY(0);animation:barGrowY 0.75s cubic-bezier(0.34,1.56,0.64,1) forwards 0.2s;"></div>
+      <div style="flex:1;height:30px;background:rgba(108,92,231,0.5);border-radius:3px 3px 0 0;transform-origin:center bottom;transform:scaleY(0);animation:barGrowY 0.75s cubic-bezier(0.34,1.56,0.64,1) forwards 0.4s;"></div>
+      <div style="flex:1;height:46px;background:rgba(108,92,231,0.72);border-radius:3px 3px 0 0;transform-origin:center bottom;transform:scaleY(0);animation:barGrowY 0.75s cubic-bezier(0.34,1.56,0.64,1) forwards 0.6s;"></div>
+      <div style="flex:1;height:62px;background:var(--accent);border-radius:3px 3px 0 0;transform-origin:center bottom;transform:scaleY(0);animation:barGrowY 0.75s cubic-bezier(0.34,1.56,0.64,1) forwards 0.8s;"></div>
+      <div style="flex-shrink:0;width:1px;background:var(--border);height:62px;margin:0 4px;"></div>
+      <div style="flex:1.3;height:62px;background:repeating-linear-gradient(45deg,rgba(108,92,231,0.07) 0px,rgba(108,92,231,0.07) 4px,transparent 4px,transparent 10px);border:1.5px dashed rgba(108,92,231,0.3);border-radius:3px 3px 0 0;display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:0.65rem;font-weight:700;color:var(--accent);letter-spacing:0.04em;">projected</span>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:6px;">
+      <div style="flex:1;text-align:center;font-size:0.68rem;"><strong style="color:var(--text-2);">$30B</strong><br><span style="color:var(--text-3);">2021</span></div>
+      <div style="flex:1;text-align:center;font-size:0.68rem;"><strong style="color:var(--text-2);">$80B</strong><br><span style="color:var(--text-3);">2023</span></div>
+      <div style="flex:1;text-align:center;font-size:0.68rem;"><strong style="color:var(--text-2);">$150B</strong><br><span style="color:var(--text-3);">2025</span></div>
+      <div style="flex:1;text-align:center;font-size:0.68rem;"><strong style="color:var(--accent);">$500B</strong><br><span style="color:var(--text-3);">2027</span></div>
+      <div style="flex-shrink:0;width:9px;"></div>
+      <div style="flex:1.3;text-align:center;font-size:0.68rem;"><strong style="color:var(--accent);">$1T+</strong><br><span style="color:var(--accent);font-size:0.62rem;">2030 proj.</span></div>
     </div>
   </div>
 </div>
@@ -1083,7 +1219,7 @@ body.fs .snotes { display:none !important; }
     <!-- Quote card -->
     <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:var(--r-lg);padding:1.25rem 1.5rem;">
       <div style="font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent-l);margin-bottom:10px;">We give you:</div>
-      <div style="font-size:1rem;color:rgba(255,255,255,0.92);line-height:1.75;font-weight:400;">
+      <div style="font-size:1rem;color:rgba(255,255,255,0.92);line-height:1.7;font-weight:400;">
         "Under a Cat 4 hitting the Gulf + 50bps rate hike, your USDC position shows
         <span style="color:var(--accent-l);font-weight:600;">72-hour redemption latency</span> and
         <span style="color:var(--accent-l);font-weight:600;">88% liquidity coverage.</span>"
@@ -1098,15 +1234,15 @@ body.fs .snotes { display:none !important; }
       <div style="font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent-l);margin-bottom:10px;">We're Looking For</div>
       <div style="display:flex;flex-direction:column;gap:8px;">
         <div style="display:flex;align-items:center;gap:10px;">
-          <span style="color:var(--accent-l);font-weight:700;">→</span>
+          <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-l);flex-shrink:0;display:inline-block;"></span>
           <span style="font-size:0.95rem;color:rgba(255,255,255,0.8);">Pilot DAO treasuries (MakerDAO, Aave, Compound)</span>
         </div>
         <div style="display:flex;align-items:center;gap:10px;">
-          <span style="color:var(--accent-l);font-weight:700;">→</span>
+          <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-l);flex-shrink:0;display:inline-block;"></span>
           <span style="font-size:0.95rem;color:rgba(255,255,255,0.8);">Advisors in DeFi risk + regulatory data infrastructure</span>
         </div>
         <div style="display:flex;align-items:center;gap:10px;">
-          <span style="color:var(--accent-l);font-weight:700;">→</span>
+          <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-l);flex-shrink:0;display:inline-block;"></span>
           <span style="font-size:0.95rem;color:rgba(255,255,255,0.8);">Institutional data contracts (risk desks, stablecoin issuers)</span>
         </div>
       </div>
@@ -1136,6 +1272,28 @@ const deck = new Reveal({
   minScale: 1, maxScale: 1
 });
 deck.initialize();
+
+// ── Replay depeg sparkline animation each time slide 2 is shown ──
+deck.on('slidechanged', function(e) {
+  if (e.indexh === 1) {
+    const root = document.getElementById('depeg-anim');
+    if (!root) return;
+    // Reset class-based animation on the polyline
+    const line = root.querySelector('.depeg-line');
+    if (line) {
+      line.style.animation = 'none';
+      void line.offsetWidth;
+      line.style.animation = '';
+    }
+    // Reset all inline svgFadeIn animations (fill, dots, labels)
+    root.querySelectorAll('[style*="svgFadeIn"]').forEach(el => {
+      const orig = el.style.animation;
+      el.style.animation = 'none';
+      void el.offsetWidth;
+      el.style.animation = orig;
+    });
+  }
+});
 
 // ── Screen Wake Lock — keep display on during presentation ──
 if ('wakeLock' in navigator) {
