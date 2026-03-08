@@ -44,7 +44,6 @@ export function SlideLayout({ children, variant = "default", className }: SlideL
       let wakeLock: WakeLockSentinel | null = null;
       const requestWakeLock = async () => {
         try {
-          // @ts-expect-error
           if ('wakeLock' in navigator) {
             wakeLock = await navigator.wakeLock.request('screen');
           }
