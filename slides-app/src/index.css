@@ -20,6 +20,31 @@
   .px-5 { padding-left: 1.8rem !important; padding-right: 1.8rem !important; }
   .py-3 { padding-top: 0.9rem !important; padding-bottom: 0.9rem !important; }
 }
+/* Responsive adjustments for mobile devices */
+@media (max-width: 600px) {
+  html, body, #root {
+    font-size: 90%;
+    padding: 0;
+    margin: 0;
+  }
+  .text-[19px] { font-size: 16px !important; }
+  .text-[clamp(1.9rem,3vw,2.6rem)] { font-size: clamp(1.2rem,4vw,1.6rem) !important; }
+  .text-[2.8rem] { font-size: 1.8rem !important; }
+  .text-[2.2rem] { font-size: 1.4rem !important; }
+  .text-[0.75rem] { font-size: 0.7rem !important; }
+  .text-[0.95rem] { font-size: 0.85rem !important; }
+  .text-[0.78rem] { font-size: 0.75rem !important; }
+  .text-2xl { font-size: 1.5rem !important; }
+  .px-16 { padding-left: 1rem !important; padding-right: 1rem !important; }
+  .pt-10 { padding-top: 1rem !important; }
+  .pb-8 { padding-bottom: 1rem !important; }
+  .rounded-2xl { border-radius: 0.7rem !important; }
+  .gap-5 { gap: 1rem !important; }
+  .gap-4 { gap: 0.7rem !important; }
+  .p-6 { padding: 0.7rem !important; }
+  .px-5 { padding-left: 0.7rem !important; padding-right: 0.7rem !important; }
+  .py-3 { padding-top: 0.5rem !important; padding-bottom: 0.5rem !important; }
+}
 @import "tailwindcss";
 
 @theme {
