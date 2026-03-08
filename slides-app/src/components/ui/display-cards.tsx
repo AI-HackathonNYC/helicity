@@ -17,7 +17,7 @@ function DisplayCard({
   title = "Featured",
   description = "Discover amazing content",
   date = "Just now",
-  iconClassName = "text-accent",
+  // iconClassName = "text-accent",
   titleClassName = "text-accent",
 }: DisplayCardProps) {
   return (

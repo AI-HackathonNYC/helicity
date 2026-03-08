@@ -43,15 +43,15 @@ export function SlideDemo(_props: { subStep?: number }) {
       <div className="flex gap-5 items-stretch mt-3">
         {/* Left: Beats — bare numbered list with connecting line */}
         <motion.div className="flex-[1.1] relative" {...fadeUp(0.1)}>
-          <div className="text-[0.75rem] font-medium uppercase tracking-[0.1em] text-text-tertiary mb-3">
+          <div className="text-[0.75rem] font-medium uppercase tracking-widest text-text-tertiary mb-3">
             Demo Script &middot; 5 Beats &middot; &lt;2 Min
           </div>
           {/* Vertical connecting line */}
-          <div className="absolute left-[10px] top-[32px] bottom-[8px] w-px bg-accent/15" />
+          <div className="absolute left-2.5 top-8 bottom-2 w-px bg-accent/15" />
           <div className="flex flex-col gap-0.5">
-            {beats.map((b, i) => (
+            {beats.map((b) => (
               <div key={b.n} className="flex gap-3 items-start py-1.5 relative">
-                <div className="w-[26px] h-[26px] rounded-md bg-accent text-white text-[0.75rem] font-bold flex items-center justify-center shrink-0 relative z-10">
+                <div className="w-6.5 h-6.5 rounded-md bg-accent text-white text-[0.75rem] font-bold flex items-center justify-center shrink-0 relative z-10">
                   {b.n}
                 </div>
                 <div className="text-[0.92rem] text-text-secondary leading-relaxed">{b.text}</div>
@@ -68,7 +68,7 @@ export function SlideDemo(_props: { subStep?: number }) {
               className={`border-l-4 ${s.borderColor} pl-4 py-2`}
               {...fadeUp(0.15 + i * 0.08)}
             >
-              <div className="text-[0.75rem] font-semibold uppercase tracking-[0.1em] text-text-tertiary mb-1">{s.cat}</div>
+              <div className="text-[0.75rem] font-semibold uppercase tracking-widest text-text-tertiary mb-1">{s.cat}</div>
               <div className="text-[1.02rem] font-semibold text-text-primary mb-1 leading-tight">{s.title}</div>
               <div className="text-[0.92rem] text-text-secondary leading-relaxed">{s.desc}</div>
             </motion.div>
@@ -79,14 +79,14 @@ export function SlideDemo(_props: { subStep?: number }) {
       {/* Live output table — bare, no card wrapper */}
       <motion.div className="border-t border-black/7 pt-3 mt-1" {...fadeUp(0.4)}>
         <div className="flex items-center justify-between mb-2">
-          <div className="text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-text-tertiary">
+          <div className="text-[0.72rem] font-semibold uppercase tracking-widest text-text-tertiary">
             Live engine output &middot; GET /api/stress scores &middot; Cat 4 + 50bps scenario
           </div>
           <Badge variant="live" dot>LIVE</Badge>
         </div>
         <div className="grid grid-cols-5 border border-black/7 rounded-xl overflow-hidden bg-card">
           {["stablecoin", "stress_score", "latency_hours", "coverage_ratio", "wam_days"].map((col, ci) => (
-            <div key={col} className={`px-4 py-2.5 ${ci < 4 ? "border-r border-black/7" : ""} ${ci === 0 ? "bg-black/[0.015]" : ""}`}>
+            <div key={col} className={`px-4 py-2.5 ${ci < 4 ? "border-r border-black/7" : ""} ${ci === 0 ? "bg-black/1.5" : ""}`}>
               <div className="text-[0.72rem] text-text-tertiary uppercase tracking-[0.08em] mb-1">{col}</div>
               {tableData.map(row => {
                 const val = col === "stablecoin" ? row.coin : col === "stress_score" ? row.score : col === "latency_hours" ? row.latency : col === "coverage_ratio" ? row.coverage : row.wam
