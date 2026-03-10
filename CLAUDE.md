@@ -330,7 +330,7 @@ main                               ← Production-ready, deploy target
 
 **feat/svb-backtest (Data/Scoring + LLM roles)**
 - [ ] SVB time machine: load March 2023 data, replay stress scores day-by-day
-- [ ] Key insight to show: SVB had a 2-year average WAM on treasuries → duration mismatch was the root cause; Fed rate hikes were the multiplier; the bank run was the outcome
+- [ ] Key insight to show: SVB had a 5.6-year average WAM on treasuries (~2,040 days) → duration mismatch was the root cause; Fed rate hikes were the multiplier; the bank run was the outcome
 - [ ] Show stress score crossing 75 ("Critical") ~48 hours before USDC depeg
 - [ ] Annotate timeline: "Rate hike + long duration = fragile. Bank run = catalyst."
 - [ ] Hurricane Ian replay (Sept 2022): show FL bank LTV stress propagation via FDIC Call Report data

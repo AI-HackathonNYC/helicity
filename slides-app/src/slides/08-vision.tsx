@@ -135,7 +135,7 @@ export function SlideVision(_props: { subStep?: number }) {
             <div className="flex flex-col gap-3">
               {[
                 { name: "USDC", width: "6%", color: "bg-success", days: "45d", dayColor: "text-success", delay: 0.3 },
-                { name: "SVB 2023", width: "100%", color: "bg-accent-light", days: "730d", dayColor: "text-accent-light", delay: 0.55 },
+                { name: "SVB 2023", width: "100%", color: "bg-accent-light", days: "2,040d", dayColor: "text-accent-light", delay: 0.55 },
               ].map(bar => (
                 <div key={bar.name} className="flex items-center gap-3">
                   <div className="text-[0.85rem] text-white/50 w-[72px] text-right font-medium shrink-0">{bar.name}</div>
