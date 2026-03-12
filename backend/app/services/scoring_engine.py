@@ -89,6 +89,100 @@ class ScoringEngine:
         tasks = [self.compute_stress_score(s) for s in symbols]
         return await asyncio.gather(*tasks)
 
+    async def project_scenario(
+        self,
+        symbol: str,
+        rate_hike_bps: Optional[int] = None,
+        hurricane_lat: Optional[float] = None,
+        hurricane_lng: Optional[float] = None,
+        hurricane_category: Optional[int] = None,
+        bank_failure: Optional[str] = None,
+    ) -> dict:
+        """Project stress score under a scenario — grounded in real data with overrides.
+
+        Returns both baseline (current) and projected scores with per-dimension deltas.
+        """
+        reserve = get_reserve_data(symbol)
+        baseline = await self.compute_stress_score(symbol)
+
+        # Build scenario-adjusted dimensions
+        adjusted_dims = []
+        for dim in baseline.dimensions:
+            adj_score = dim.score
+
+            if dim.name == "Duration Risk (WAM)" and rate_hike_bps:
+                # Rate hikes amplify duration risk — each 25bps adds ~5 points if WAM > 60d
+                wam = reserve.weighted_avg_maturity_days
+                rate_multiplier = (rate_hike_bps / 25) * 5 * (wam / 365.0)
+                adj_score = min(100.0, dim.score + rate_multiplier)
+
+            elif dim.name == "Weather Tail-Risk" and hurricane_lat is not None:
+                # Project hurricane impact on counterparty banks
+                cat = hurricane_category or 3
+                severity = cat / 5.0
+                hit_score = 0.0
+                for cp in reserve.counterparties:
+                    if cp.lat and cp.lng:
+                        from app.services.knowledge_graph import _haversine
+                        dist = _haversine(hurricane_lat, hurricane_lng, cp.lat, cp.lng)
+                        impact = max(0, 1 - dist / 500) * severity
+                        ltv = cp.fdic_ltv_ratio or 0.5
+                        hit_score += impact * ltv * (cp.percentage / 100.0) * 100
+
+                # Also check data center corridor impact
+                corridors_hit = self.graph.get_corridors_in_radius(
+                    hurricane_lat, hurricane_lng, 300.0
+                )
+                if corridors_hit:
+                    hit_score += 15 * severity  # ops risk bonus
+
+                adj_score = min(100.0, max(dim.score, hit_score))
+
+            elif dim.name == "Counterparty Health" and bank_failure:
+                # If a specific bank fails, spike counterparty health risk
+                for cp in reserve.counterparties:
+                    if bank_failure.lower() in cp.bank_name.lower():
+                        adj_score = min(100.0, dim.score + cp.percentage)
+                        break
+
+            adjusted_dims.append({
+                "name": dim.name,
+                "baseline_score": dim.score,
+                "projected_score": round(adj_score, 1),
+                "delta": round(adj_score - dim.score, 1),
+                "weight": dim.weight,
+                "baseline_weighted": dim.weighted_score,
+                "projected_weighted": round(adj_score * dim.weight, 2),
+            })
+
+        projected_composite = sum(d["projected_weighted"] for d in adjusted_dims)
+        projected_composite = min(100.0, max(0.0, projected_composite))
+        proj_level, proj_latency, proj_coverage = _map_score(projected_composite)
+
+        return {
+            "stablecoin": symbol,
+            "scenario": {
+                "rate_hike_bps": rate_hike_bps,
+                "hurricane": {"lat": hurricane_lat, "lng": hurricane_lng, "category": hurricane_category}
+                if hurricane_lat is not None else None,
+                "bank_failure": bank_failure,
+            },
+            "baseline": {
+                "stress_score": baseline.stress_score,
+                "stress_level": baseline.stress_level,
+                "redemption_latency_hours": baseline.redemption_latency_hours,
+                "liquidity_coverage_ratio": baseline.liquidity_coverage_ratio,
+            },
+            "projected": {
+                "stress_score": round(projected_composite, 1),
+                "stress_level": proj_level,
+                "redemption_latency_hours": proj_latency,
+                "liquidity_coverage_ratio": proj_coverage,
+            },
+            "dimensions": adjusted_dims,
+            "delta": round(projected_composite - baseline.stress_score, 1),
+        }
+
     # --- Dimension 1: Duration Risk (30% weight) ---
 
     async def _duration_risk(self, reserve: ReserveData) -> DimensionScore:

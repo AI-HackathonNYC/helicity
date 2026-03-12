@@ -71,6 +71,48 @@ export interface GraphData {
   edges: GraphEdge[]
 }
 
+export interface ProjectionRequest {
+  stablecoin: string
+  rate_hike_bps?: number
+  hurricane_lat?: number
+  hurricane_lng?: number
+  hurricane_category?: number
+  bank_failure?: string
+}
+
+export interface ProjectionDimension {
+  name: string
+  baseline_score: number
+  projected_score: number
+  delta: number
+  weight: number
+  baseline_weighted: number
+  projected_weighted: number
+}
+
+export interface ProjectionResult {
+  stablecoin: string
+  scenario: {
+    rate_hike_bps: number | null
+    hurricane: { lat: number; lng: number; category: number } | null
+    bank_failure: string | null
+  }
+  baseline: {
+    stress_score: number
+    stress_level: string
+    redemption_latency_hours: string
+    liquidity_coverage_ratio: string
+  }
+  projected: {
+    stress_score: number
+    stress_level: string
+    redemption_latency_hours: string
+    liquidity_coverage_ratio: string
+  }
+  dimensions: ProjectionDimension[]
+  delta: number
+}
+
 export interface ApiResponse<T> {
   data: T
   error: string | null
