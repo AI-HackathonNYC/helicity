@@ -1,0 +1,58 @@
+{
+  "scenario": "hurricane_nova",
+  "description": "Demo scenario: Category 4 hurricane targeting Northern Virginia data center corridor (us-east-1). Demonstrates operational risk from storm track intersecting critical infrastructure.",
+  "hurricane": {
+    "name": "Demo Hurricane",
+    "category": 4,
+    "lat": 37.5,
+    "lng": -77.5,
+    "max_wind_mph": 140,
+    "track": [
+      [35.0, -80.0],
+      [36.5, -78.5],
+      [37.5, -77.5],
+      [38.5, -76.0]
+    ],
+    "cone_radius_nm": 120
+  },
+  "affected_corridors": ["us-east-1"],
+  "affected_banks_fl": ["First Horizon", "Regions Financial"],
+  "impact_analysis": {
+    "expected_usdc_score": 68,
+    "expected_latency_hours": 72,
+    "expected_coverage_pct": 88,
+    "primary_risk": "operational",
+    "secondary_risk": "counterparty_ltv"
+  },
+  "stablecoin_exposure": [
+    {
+      "stablecoin": "USDC",
+      "corridor_exposure_pct": 47.0,
+      "affected_counterparties": ["BNY Mellon", "Goldman Sachs"],
+      "projected_stress_score": 68,
+      "baseline_stress_score": 32
+    },
+    {
+      "stablecoin": "BUSD",
+      "corridor_exposure_pct": 85.0,
+      "affected_counterparties": ["Paxos Trust", "BNY Mellon"],
+      "projected_stress_score": 74,
+      "baseline_stress_score": 28
+    },
+    {
+      "stablecoin": "USDT",
+      "corridor_exposure_pct": 40.0,
+      "affected_counterparties": ["Cantor Fitzgerald"],
+      "projected_stress_score": 58,
+      "baseline_stress_score": 42
+    },
+    {
+      "stablecoin": "DAI",
+      "corridor_exposure_pct": 17.0,
+      "affected_counterparties": ["Huntingdon Valley Bank", "BlockTower Credit"],
+      "projected_stress_score": 45,
+      "baseline_stress_score": 35
+    }
+  ],
+  "narrative": "A Category 4 hurricane tracking through Northern Virginia would impact the us-east-1 data center corridor, affecting redemption processing for stablecoins with concentrated operational exposure. USDC and BUSD show highest vulnerability due to 47% and 85% respective exposure to affected counterparties. Expected redemption latency increases to 72 hours with liquidity coverage dropping to 88%."
+}

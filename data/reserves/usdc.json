@@ -1,0 +1,65 @@
+{
+  "stablecoin": "USDC",
+  "issuer": "Circle",
+  "report_date": "2026-02-28",
+  "data_source": "occ_xbrl",
+  "total_reserves": 42000000000,
+  "weighted_avg_maturity_days": 45,
+  "counterparties": [
+    {
+      "bank_name": "BNY Mellon",
+      "city": "New York",
+      "state": "NY",
+      "percentage": 35.0,
+      "asset_class": "t_bills",
+      "maturity_days": 30,
+      "fdic_ltv_ratio": 0.62,
+      "data_center_corridor": "us-east-1"
+    },
+    {
+      "bank_name": "State Street",
+      "city": "Boston",
+      "state": "MA",
+      "percentage": 25.0,
+      "asset_class": "t_bills",
+      "maturity_days": 60,
+      "fdic_ltv_ratio": 0.58,
+      "data_center_corridor": "us-east-2"
+    },
+    {
+      "bank_name": "JP Morgan",
+      "city": "New York",
+      "state": "NY",
+      "percentage": 20.0,
+      "asset_class": "repo",
+      "maturity_days": 7,
+      "fdic_ltv_ratio": 0.55,
+      "data_center_corridor": "us-west-2"
+    },
+    {
+      "bank_name": "Goldman Sachs",
+      "city": "New York",
+      "state": "NY",
+      "percentage": 12.0,
+      "asset_class": "mmf",
+      "maturity_days": 1,
+      "fdic_ltv_ratio": 0.51,
+      "data_center_corridor": "us-east-1"
+    },
+    {
+      "bank_name": "Silicon Valley Bank",
+      "city": "Santa Clara",
+      "state": "CA",
+      "percentage": 8.0,
+      "asset_class": "deposits",
+      "maturity_days": 0,
+      "fdic_ltv_ratio": 0.71,
+      "data_center_corridor": "us-west-1"
+    }
+  ],
+  "onchain_cross_check": {
+    "burn_7d_usd": 850000000,
+    "custodian_cash_delta": -840000000,
+    "divergence_pct": 1.2
+  }
+}

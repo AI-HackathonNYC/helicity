@@ -1,0 +1,74 @@
+[
+  {
+    "corridor": "us-east-1",
+    "provider": "AWS",
+    "region": "Northern Virginia",
+    "lat": 38.95,
+    "lng": -77.45,
+    "bbox": [38.7, -77.7, 39.2, -77.2]
+  },
+  {
+    "corridor": "us-east-2",
+    "provider": "AWS",
+    "region": "Ohio",
+    "lat": 40.1,
+    "lng": -83.1,
+    "bbox": [39.8, -83.4, 40.4, -82.8]
+  },
+  {
+    "corridor": "us-west-1",
+    "provider": "AWS",
+    "region": "N. California",
+    "lat": 37.35,
+    "lng": -121.95,
+    "bbox": [37.1, -122.2, 37.6, -121.7]
+  },
+  {
+    "corridor": "us-west-2",
+    "provider": "AWS",
+    "region": "Oregon",
+    "lat": 45.6,
+    "lng": -121.2,
+    "bbox": [45.3, -121.5, 45.9, -120.9]
+  },
+  {
+    "corridor": "us-central",
+    "provider": "AWS",
+    "region": "Iowa",
+    "lat": 41.8,
+    "lng": -93.1,
+    "bbox": [41.5, -93.4, 42.1, -92.8]
+  },
+  {
+    "corridor": "eu-west-1",
+    "provider": "AWS",
+    "region": "Ireland",
+    "lat": 53.35,
+    "lng": -6.26,
+    "bbox": [53.1, -6.5, 53.6, -6.0]
+  },
+  {
+    "corridor": "ap-east-1",
+    "provider": "AWS",
+    "region": "Hong Kong",
+    "lat": 22.32,
+    "lng": 114.17,
+    "bbox": [22.1, 114.0, 22.5, 114.4]
+  },
+  {
+    "corridor": "azure-east-us",
+    "provider": "Azure",
+    "region": "Virginia",
+    "lat": 37.43,
+    "lng": -79.97,
+    "bbox": [37.2, -80.2, 37.7, -79.7]
+  },
+  {
+    "corridor": "azure-west-us",
+    "provider": "Azure",
+    "region": "California",
+    "lat": 37.78,
+    "lng": -122.42,
+    "bbox": [37.5, -122.7, 38.0, -122.1]
+  }
+]

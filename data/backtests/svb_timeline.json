@@ -1,0 +1,142 @@
+{
+  "scenario": "svb_collapse",
+  "description": "Silicon Valley Bank collapse timeline - March 2023. SVB had extreme duration mismatch with ~2,040-day WAM on held-to-maturity securities. Fed rate hikes created $17.7B in unrealized losses. Bank run triggered March 8-10, FDIC seizure March 10, USDC depegged to $0.87 on March 11.",
+  "key_insight": "Stress score should cross 75 (Critical threshold) by March 8 — approximately 48 hours before the actual USDC depeg event.",
+  "dates": [
+    {
+      "date": "2023-03-01",
+      "svb_wam_days": 2040,
+      "usdc_stress_score": 32,
+      "fed_funds_rate_bps": 450,
+      "svb_unrealized_losses_B": 15.1,
+      "usdc_peg": 1.00,
+      "event": null
+    },
+    {
+      "date": "2023-03-02",
+      "svb_wam_days": 2040,
+      "usdc_stress_score": 34,
+      "fed_funds_rate_bps": 450,
+      "svb_unrealized_losses_B": 15.4,
+      "usdc_peg": 1.00,
+      "event": null
+    },
+    {
+      "date": "2023-03-03",
+      "svb_wam_days": 2040,
+      "usdc_stress_score": 38,
+      "fed_funds_rate_bps": 475,
+      "svb_unrealized_losses_B": 16.2,
+      "usdc_peg": 1.00,
+      "event": "Fed signals further rate hikes at testimony"
+    },
+    {
+      "date": "2023-03-04",
+      "svb_wam_days": 2040,
+      "usdc_stress_score": 42,
+      "fed_funds_rate_bps": 475,
+      "svb_unrealized_losses_B": 16.8,
+      "usdc_peg": 1.00,
+      "event": null
+    },
+    {
+      "date": "2023-03-05",
+      "svb_wam_days": 2040,
+      "usdc_stress_score": 45,
+      "fed_funds_rate_bps": 475,
+      "svb_unrealized_losses_B": 17.0,
+      "usdc_peg": 1.00,
+      "event": null
+    },
+    {
+      "date": "2023-03-06",
+      "svb_wam_days": 2040,
+      "usdc_stress_score": 52,
+      "fed_funds_rate_bps": 475,
+      "svb_unrealized_losses_B": 17.3,
+      "usdc_peg": 1.00,
+      "event": "SVB announces $1.8B loss on bond portfolio sale"
+    },
+    {
+      "date": "2023-03-07",
+      "svb_wam_days": 2040,
+      "usdc_stress_score": 61,
+      "fed_funds_rate_bps": 475,
+      "svb_unrealized_losses_B": 17.5,
+      "usdc_peg": 1.00,
+      "event": "SVB announces $2.25B stock offering - market panic begins"
+    },
+    {
+      "date": "2023-03-08",
+      "svb_wam_days": 2040,
+      "usdc_stress_score": 76,
+      "fed_funds_rate_bps": 475,
+      "svb_unrealized_losses_B": 17.7,
+      "usdc_peg": 0.998,
+      "event": "SVB stock drops 60% - CRITICAL threshold crossed"
+    },
+    {
+      "date": "2023-03-09",
+      "svb_wam_days": 2040,
+      "usdc_stress_score": 82,
+      "fed_funds_rate_bps": 475,
+      "svb_unrealized_losses_B": 17.7,
+      "usdc_peg": 0.995,
+      "event": "Bank run begins - $42B withdrawal attempts in single day"
+    },
+    {
+      "date": "2023-03-10",
+      "svb_wam_days": 2040,
+      "usdc_stress_score": 91,
+      "fed_funds_rate_bps": 475,
+      "svb_unrealized_losses_B": 17.7,
+      "usdc_peg": 0.90,
+      "event": "SVB fails - FDIC seizes bank. Circle confirms $3.3B exposure"
+    },
+    {
+      "date": "2023-03-11",
+      "svb_wam_days": 2040,
+      "usdc_stress_score": 97,
+      "fed_funds_rate_bps": 475,
+      "svb_unrealized_losses_B": 17.7,
+      "usdc_peg": 0.87,
+      "event": "USDC depegs to $0.87 - redemptions frozen"
+    },
+    {
+      "date": "2023-03-12",
+      "svb_wam_days": 2040,
+      "usdc_stress_score": 88,
+      "fed_funds_rate_bps": 475,
+      "svb_unrealized_losses_B": 17.7,
+      "usdc_peg": 0.92,
+      "event": "Fed announces emergency backstop program consideration"
+    },
+    {
+      "date": "2023-03-13",
+      "svb_wam_days": 2040,
+      "usdc_stress_score": 68,
+      "fed_funds_rate_bps": 475,
+      "svb_unrealized_losses_B": 17.7,
+      "usdc_peg": 0.98,
+      "event": "Fed announces Bank Term Funding Program - USDC begins re-peg"
+    },
+    {
+      "date": "2023-03-14",
+      "svb_wam_days": 2040,
+      "usdc_stress_score": 52,
+      "fed_funds_rate_bps": 475,
+      "svb_unrealized_losses_B": 17.7,
+      "usdc_peg": 0.995,
+      "event": "Circle confirms reserves fully backed - redemptions resume"
+    },
+    {
+      "date": "2023-03-15",
+      "svb_wam_days": 2040,
+      "usdc_stress_score": 38,
+      "fed_funds_rate_bps": 475,
+      "svb_unrealized_losses_B": 17.7,
+      "usdc_peg": 1.00,
+      "event": "USDC fully re-pegged - SVB exposure eliminated from reserves"
+    }
+  ]
+}

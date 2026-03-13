@@ -1,0 +1,65 @@
+{
+  "stablecoin": "DAI",
+  "issuer": "MakerDAO",
+  "report_date": "2026-02-28",
+  "data_source": "occ_xbrl",
+  "total_reserves": 5000000000,
+  "weighted_avg_maturity_days": 15,
+  "counterparties": [
+    {
+      "bank_name": "ETH Collateral Vaults",
+      "city": "Decentralized",
+      "state": "On-Chain",
+      "percentage": 45.0,
+      "asset_class": "eth_collateral",
+      "maturity_days": 0,
+      "fdic_ltv_ratio": null,
+      "data_center_corridor": null
+    },
+    {
+      "bank_name": "USDC PSM",
+      "city": "Decentralized",
+      "state": "On-Chain",
+      "percentage": 30.0,
+      "asset_class": "usdc_backing",
+      "maturity_days": 0,
+      "fdic_ltv_ratio": null,
+      "data_center_corridor": null
+    },
+    {
+      "bank_name": "Huntingdon Valley Bank",
+      "city": "Huntingdon Valley",
+      "state": "PA",
+      "percentage": 12.0,
+      "asset_class": "rwa_loans",
+      "maturity_days": 45,
+      "fdic_ltv_ratio": 0.68,
+      "data_center_corridor": "us-east-1"
+    },
+    {
+      "bank_name": "Monetalis Clydesdale",
+      "city": "London",
+      "state": "UK",
+      "percentage": 8.0,
+      "asset_class": "t_bills",
+      "maturity_days": 30,
+      "fdic_ltv_ratio": null,
+      "data_center_corridor": "eu-west-1"
+    },
+    {
+      "bank_name": "BlockTower Credit",
+      "city": "Miami",
+      "state": "FL",
+      "percentage": 5.0,
+      "asset_class": "rwa_loans",
+      "maturity_days": 60,
+      "fdic_ltv_ratio": 0.72,
+      "data_center_corridor": "us-east-1"
+    }
+  ],
+  "onchain_cross_check": {
+    "burn_7d_usd": 125000000,
+    "custodian_cash_delta": -123000000,
+    "divergence_pct": 1.6
+  }
+}

@@ -1,0 +1,211 @@
+[
+  {
+    "bank_name": "BNY Mellon",
+    "city": "New York",
+    "state": "NY",
+    "lat": 40.7128,
+    "lng": -74.0060,
+    "fdic_cert_number": 7534,
+    "ltv_ratio": 0.62,
+    "liquidity_coverage_ratio": 1.15,
+    "fdic_watch_list": false
+  },
+  {
+    "bank_name": "State Street",
+    "city": "Boston",
+    "state": "MA",
+    "lat": 42.3601,
+    "lng": -71.0589,
+    "fdic_cert_number": 823,
+    "ltv_ratio": 0.58,
+    "liquidity_coverage_ratio": 1.22,
+    "fdic_watch_list": false
+  },
+  {
+    "bank_name": "JP Morgan",
+    "city": "New York",
+    "state": "NY",
+    "lat": 40.7580,
+    "lng": -73.9855,
+    "fdic_cert_number": 628,
+    "ltv_ratio": 0.55,
+    "liquidity_coverage_ratio": 1.30,
+    "fdic_watch_list": false
+  },
+  {
+    "bank_name": "Goldman Sachs",
+    "city": "New York",
+    "state": "NY",
+    "lat": 40.7146,
+    "lng": -74.0071,
+    "fdic_cert_number": 33124,
+    "ltv_ratio": 0.51,
+    "liquidity_coverage_ratio": 1.25,
+    "fdic_watch_list": false
+  },
+  {
+    "bank_name": "Silicon Valley Bank",
+    "city": "Santa Clara",
+    "state": "CA",
+    "lat": 37.3541,
+    "lng": -121.9552,
+    "fdic_cert_number": 24735,
+    "ltv_ratio": 0.71,
+    "liquidity_coverage_ratio": 0.68,
+    "fdic_watch_list": true
+  },
+  {
+    "bank_name": "Cantor Fitzgerald",
+    "city": "New York",
+    "state": "NY",
+    "lat": 40.7128,
+    "lng": -74.0134,
+    "fdic_cert_number": null,
+    "ltv_ratio": 0.48,
+    "liquidity_coverage_ratio": 1.10,
+    "fdic_watch_list": false
+  },
+  {
+    "bank_name": "Capital Union Bank",
+    "city": "Nassau",
+    "state": "Bahamas",
+    "lat": 25.0343,
+    "lng": -77.3963,
+    "fdic_cert_number": null,
+    "ltv_ratio": null,
+    "liquidity_coverage_ratio": null,
+    "fdic_watch_list": false
+  },
+  {
+    "bank_name": "Deltec Bank",
+    "city": "Nassau",
+    "state": "Bahamas",
+    "lat": 25.0480,
+    "lng": -77.3554,
+    "fdic_cert_number": null,
+    "ltv_ratio": null,
+    "liquidity_coverage_ratio": null,
+    "fdic_watch_list": false
+  },
+  {
+    "bank_name": "Britannia Bank",
+    "city": "Nassau",
+    "state": "Bahamas",
+    "lat": 25.0600,
+    "lng": -77.3450,
+    "fdic_cert_number": null,
+    "ltv_ratio": null,
+    "liquidity_coverage_ratio": null,
+    "fdic_watch_list": false
+  },
+  {
+    "bank_name": "Huntingdon Valley Bank",
+    "city": "Huntingdon Valley",
+    "state": "PA",
+    "lat": 40.1282,
+    "lng": -75.0632,
+    "fdic_cert_number": 14405,
+    "ltv_ratio": 0.68,
+    "liquidity_coverage_ratio": 1.05,
+    "fdic_watch_list": false
+  },
+  {
+    "bank_name": "Paxos Trust",
+    "city": "New York",
+    "state": "NY",
+    "lat": 40.7484,
+    "lng": -73.9857,
+    "fdic_cert_number": null,
+    "ltv_ratio": 0.45,
+    "liquidity_coverage_ratio": 1.40,
+    "fdic_watch_list": false
+  },
+  {
+    "bank_name": "First Digital Trust",
+    "city": "Hong Kong",
+    "state": "HK",
+    "lat": 22.3193,
+    "lng": 114.1694,
+    "fdic_cert_number": null,
+    "ltv_ratio": null,
+    "liquidity_coverage_ratio": null,
+    "fdic_watch_list": false
+  },
+  {
+    "bank_name": "Silvergate Bank",
+    "city": "La Jolla",
+    "state": "CA",
+    "lat": 32.8328,
+    "lng": -117.2713,
+    "fdic_cert_number": 27944,
+    "ltv_ratio": 0.78,
+    "liquidity_coverage_ratio": 0.72,
+    "fdic_watch_list": true
+  },
+  {
+    "bank_name": "Signature Bank",
+    "city": "New York",
+    "state": "NY",
+    "lat": 40.7614,
+    "lng": -73.9776,
+    "fdic_cert_number": 57053,
+    "ltv_ratio": 0.75,
+    "liquidity_coverage_ratio": 0.85,
+    "fdic_watch_list": true
+  },
+  {
+    "bank_name": "FinresPBC",
+    "city": "Kansas City",
+    "state": "MO",
+    "lat": 39.0997,
+    "lng": -94.5786,
+    "fdic_cert_number": null,
+    "ltv_ratio": 0.52,
+    "liquidity_coverage_ratio": 1.15,
+    "fdic_watch_list": false
+  },
+  {
+    "bank_name": "Lead Bank",
+    "city": "Kansas City",
+    "state": "MO",
+    "lat": 39.0473,
+    "lng": -94.5735,
+    "fdic_cert_number": 17176,
+    "ltv_ratio": 0.61,
+    "liquidity_coverage_ratio": 1.08,
+    "fdic_watch_list": false
+  },
+  {
+    "bank_name": "BlockTower Credit",
+    "city": "Miami",
+    "state": "FL",
+    "lat": 25.7617,
+    "lng": -80.1918,
+    "fdic_cert_number": null,
+    "ltv_ratio": 0.72,
+    "liquidity_coverage_ratio": 0.95,
+    "fdic_watch_list": false
+  },
+  {
+    "bank_name": "First Horizon",
+    "city": "Memphis",
+    "state": "TN",
+    "lat": 35.1495,
+    "lng": -90.0490,
+    "fdic_cert_number": 1721,
+    "ltv_ratio": 0.69,
+    "liquidity_coverage_ratio": 1.02,
+    "fdic_watch_list": false
+  },
+  {
+    "bank_name": "Regions Financial",
+    "city": "Birmingham",
+    "state": "AL",
+    "lat": 33.5207,
+    "lng": -86.8025,
+    "fdic_cert_number": 4254,
+    "ltv_ratio": 0.71,
+    "liquidity_coverage_ratio": 1.05,
+    "fdic_watch_list": false
+  }
+]

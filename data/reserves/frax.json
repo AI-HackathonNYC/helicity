@@ -1,0 +1,65 @@
+{
+  "stablecoin": "FRAX",
+  "issuer": "Frax Finance",
+  "report_date": "2026-02-28",
+  "data_source": "occ_xbrl",
+  "total_reserves": 800000000,
+  "weighted_avg_maturity_days": 22,
+  "counterparties": [
+    {
+      "bank_name": "USDC Backing",
+      "city": "Decentralized",
+      "state": "On-Chain",
+      "percentage": 40.0,
+      "asset_class": "usdc_backing",
+      "maturity_days": 0,
+      "fdic_ltv_ratio": null,
+      "data_center_corridor": null
+    },
+    {
+      "bank_name": "sFRAX Yield Strategy",
+      "city": "Decentralized",
+      "state": "On-Chain",
+      "percentage": 25.0,
+      "asset_class": "yield_strategy",
+      "maturity_days": 14,
+      "fdic_ltv_ratio": null,
+      "data_center_corridor": null
+    },
+    {
+      "bank_name": "Algorithmic Module",
+      "city": "Decentralized",
+      "state": "On-Chain",
+      "percentage": 20.0,
+      "asset_class": "algorithmic",
+      "maturity_days": 0,
+      "fdic_ltv_ratio": null,
+      "data_center_corridor": null
+    },
+    {
+      "bank_name": "FinresPBC",
+      "city": "Kansas City",
+      "state": "MO",
+      "percentage": 10.0,
+      "asset_class": "t_bills",
+      "maturity_days": 45,
+      "fdic_ltv_ratio": 0.52,
+      "data_center_corridor": "us-central"
+    },
+    {
+      "bank_name": "Lead Bank",
+      "city": "Kansas City",
+      "state": "MO",
+      "percentage": 5.0,
+      "asset_class": "deposits",
+      "maturity_days": 0,
+      "fdic_ltv_ratio": 0.61,
+      "data_center_corridor": "us-central"
+    }
+  ],
+  "onchain_cross_check": {
+    "burn_7d_usd": 32000000,
+    "custodian_cash_delta": -31500000,
+    "divergence_pct": 1.6
+  }
+}

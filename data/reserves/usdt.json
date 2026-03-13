@@ -1,0 +1,65 @@
+{
+  "stablecoin": "USDT",
+  "issuer": "Tether",
+  "report_date": "2026-02-28",
+  "data_source": "occ_xbrl",
+  "total_reserves": 95000000000,
+  "weighted_avg_maturity_days": 38,
+  "counterparties": [
+    {
+      "bank_name": "Cantor Fitzgerald",
+      "city": "New York",
+      "state": "NY",
+      "percentage": 40.0,
+      "asset_class": "t_bills",
+      "maturity_days": 28,
+      "fdic_ltv_ratio": 0.48,
+      "data_center_corridor": "us-east-1"
+    },
+    {
+      "bank_name": "Capital Union Bank",
+      "city": "Nassau",
+      "state": "Bahamas",
+      "percentage": 25.0,
+      "asset_class": "commercial_paper",
+      "maturity_days": 45,
+      "fdic_ltv_ratio": null,
+      "data_center_corridor": null
+    },
+    {
+      "bank_name": "Deltec Bank",
+      "city": "Nassau",
+      "state": "Bahamas",
+      "percentage": 20.0,
+      "asset_class": "secured_loans",
+      "maturity_days": 60,
+      "fdic_ltv_ratio": null,
+      "data_center_corridor": null
+    },
+    {
+      "bank_name": "Britannia Bank",
+      "city": "Nassau",
+      "state": "Bahamas",
+      "percentage": 10.0,
+      "asset_class": "commercial_paper",
+      "maturity_days": 30,
+      "fdic_ltv_ratio": null,
+      "data_center_corridor": null
+    },
+    {
+      "bank_name": "Other Counterparties",
+      "city": "Various",
+      "state": "Various",
+      "percentage": 5.0,
+      "asset_class": "t_bills",
+      "maturity_days": 14,
+      "fdic_ltv_ratio": null,
+      "data_center_corridor": null
+    }
+  ],
+  "onchain_cross_check": {
+    "burn_7d_usd": 2100000000,
+    "custodian_cash_delta": -2000000000,
+    "divergence_pct": 4.8
+  }
+}
