@@ -30,7 +30,7 @@ Katabatic is to stablecoin reserve risk what on-chain data infrastructure platfo
 | **Reserve Risk — Katabatic** | **Stress Score = WAM × weather multiplier × concentration. API + streaming.** |
 | Downstream consumers | DAO governance · DeFi protocols · Risk desks · Oracle feeds · AI agents (MCP) |
 
-On-chain data platforms have no WAM duration engine, no FDIC Call Report mining, no weather tail-risk model, no reserve stress simulation. Katabatic ingests on-chain mint/burn data as *one input* into a multi-signal scoring engine combining off-chain regulatory filings + macroeconomic signals. **Complementary, not competing.**
+On-chain data platforms have no WAM duration engine, no FDIC Call Report mining, no weather tail-risk model, no reserve stress scoring. Katabatic ingests on-chain mint/burn data as *one input* into a multi-signal scoring engine combining off-chain regulatory filings + macroeconomic signals. **Complementary, not competing.**
 
 **The key analogy (use this in pitches):** On-chain data platforms became the single source of truth for on-chain behavior — the data layer that Visa, a16z, and Grayscale integrate into their own systems. Katabatic is building the equivalent layer for off-chain reserve risk. When a DAO treasury or DeFi protocol needs to know the structural fragility of a stablecoin reserve, Katabatic is the score they integrate — not one of many dashboards they view.
 
@@ -234,7 +234,7 @@ Stress Score 76–100 → "Critical Stress. Latency: 72h+. Coverage: <85%"
 ├───────────────────────── ▼ ──────────────────────────────────┤
 │  Layer 2 — Reserve Risk Infrastructure  ★ KATABATIC ★        │
 │  WAM duration engine · FDIC Call Report mining                │
-│  Weather tail-risk model · Reserve stress simulation          │
+│  Weather tail-risk model · Reserve stress scoring              │
 │  What onchain can't see:                                     │
 │    • Duration mismatch   • Bank health signals                │
 │    • Data center ops risk • Weather tail-risk                 │
@@ -246,21 +246,7 @@ Stress Score 76–100 → "Critical Stress. Latency: 72h+. Coverage: <85%"
 
 ---
 
-## Vision & Roadmap (Slide 8)
-
-> **Key pitch line:** "Bloomberg started with terminals. We start with stress simulations."
-
-| Phase | Name | Capabilities |
-|-------|------|-------------|
-| **01 Now** | Stress Test Playground | IPFS verified scores · MCP for AI agents · Chainlink ready |
-| **02 Next** | Oracle Grade Risk Feed | Enterprise API · Real-time streaming · TEE execution |
-| **03 Endgame** | The Katabatic Stablecoin | The system of record for stablecoin reserve risk |
-
-**WAM comparison (Slide 8 visual):** USDC 45-day WAM (green, healthy) vs SVB 2,040-day WAM (purple accent, catastrophic). That's the difference between safe and catastrophic.
-
----
-
-## Business Model (Slide 9)
+## Business Model (Slide 8)
 
 > **Key pitch line:** "API-first infrastructure. Not a consulting fee."
 
@@ -403,7 +389,7 @@ main                               ← Production-ready, deploy target
 - [ ] Storm overlay logic: for each bank in storm track, compute `ltv_stress = ltv_ratio × storm_intensity_factor`
 - [ ] Operational risk: check if storm track intersects data center corridor bounding boxes
 - [ ] Endpoint: `GET /api/weather/active` — returns current weather stress events with ops impact
-- [ ] Endpoint: `POST /api/weather/simulate` — accepts hurricane params, returns affected banks + data centers + WAM-adjusted stress scores
+- [ ] Endpoint: weather data is consumed by scoring engine from live NOAA/NHC feeds — no manual simulation endpoint
 
 **feat/scoring-engine (Data/Scoring role)**
 - [ ] WAM calculator: `duration_score = normalize(weighted_avg_maturity_days, 0, 365)`
@@ -413,11 +399,11 @@ main                               ← Production-ready, deploy target
 - [ ] Composite: `stress_score = Σ(weight_i × dimension_i)` per table above
 - [ ] Output mapping: stress score → redemption latency + liquidity coverage estimate
 - [ ] Endpoint: `GET /api/stress-scores` — returns all stablecoin stress scores
-- [ ] Endpoint: `POST /api/stress-scores/simulate` — accepts scenario params (rate hike bps, hurricane category + location, bank failure), returns re-scored outputs
+- [ ] Endpoint: `POST /api/stress-scores/project` — system-generated scenario projection from live data feeds (NOAA forecasts, Fed/macro signals, FDIC alerts)
 
 **feat/mcp-server (Backend role)**
 - [ ] Add `fastmcp` SDK to `requirements.txt`
-- [ ] Write `backend/mcp_server.py` — MCP server exposing 5 tools: `get_stress_scores`, `get_stablecoin_detail`, `simulate_scenario`, `get_active_alerts`, `get_score_history`
+- [ ] Write `backend/mcp_server.py` — MCP server exposing 5 tools: `get_stress_scores`, `get_stablecoin_detail`, `project_scenario`, `get_active_alerts`, `get_score_history`
 - [ ] Each tool delegates to existing scoring/weather/ipfs service functions
 - [ ] Support stdio transport (local agent) and SSE transport (remote agent)
 - [ ] All tool outputs use the standard `{ "data": ..., "error": null, "timestamp": "..." }` envelope
