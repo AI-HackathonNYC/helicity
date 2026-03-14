@@ -109,3 +109,75 @@ async def store_score(result: StressScoreResult) -> None:
             row,
         )
         await db.commit()
+
+
+# ---------------------------------------------------------------------------
+# Read side — JSON export
+# ---------------------------------------------------------------------------
+
+async def export_scores_json(
+    stablecoins: Optional[list[str]],
+    start_date: str,
+    end_date: str,
+    limit: int = 1000,
+    offset: int = 0,
+) -> list[dict]:
+    """Query historical scores from SQLite and return as a list of dicts.
+
+    Args:
+        stablecoins: filter to these symbols (None = all).
+        start_date:  ISO date string "YYYY-MM-DD" (inclusive).
+        end_date:    ISO date string "YYYY-MM-DD" (inclusive).
+        limit:       max rows per page (default 1000, max 10000).
+        offset:      rows to skip for pagination.
+
+    Returns:
+        List of score dicts; empty list if no rows match.
+    """
+    await _init_db()
+
+    # Clamp limit
+    limit = min(limit, 10000)
+
+    # Build WHERE clause
+    conditions = ["scored_at >= ?", "scored_at <= ?"]
+    # Extend end_date to end of day so "2026-03-10" includes 23:59:59
+    params: list = [f"{start_date}T00:00:00", f"{end_date}T23:59:59"]
+
+    if stablecoins:
+        placeholders = ",".join("?" * len(stablecoins))
+        conditions.append(f"stablecoin IN ({placeholders})")
+        params.extend([s.upper() for s in stablecoins])
+
+    where = " AND ".join(conditions)
+    params.extend([limit, offset])
+
+    query = f"""
+        SELECT
+            scored_at   AS date,
+            stablecoin,
+            score,
+            level,
+            latency_hours,
+            coverage_ratio,
+            dim_duration,
+            dim_transparency,
+            dim_concentration,
+            dim_weather,
+            dim_counterparty,
+            dim_peg,
+            ipfs_cid
+        FROM stress_scores
+        WHERE {where}
+        ORDER BY scored_at DESC, stablecoin ASC
+        LIMIT ? OFFSET ?
+    """
+
+    try:
+        async with aiosqlite.connect(_DB_PATH) as db:
+            db.row_factory = aiosqlite.Row
+            async with db.execute(query, params) as cursor:
+                rows = await cursor.fetchall()
+                return [dict(row) for row in rows]
+    except Exception:
+        return []
