@@ -19,15 +19,15 @@ const SLIDES = [
   SlideDimensions,
   SlideWhyNow,
   SlidePositioning,
-  SlideDemo,
   SlideBusiness,
+  SlideDemo,
   SlideClose,
 ]
 
 // How many sub-steps each slide has (1 = normal slide, >1 = has internal steps)
 const SUB_STEPS = [1, 1, 1, 1, 1, 1, 1, 1, 1]
 
-const PACES = [15, 25, 20, 25, 25, 25, 25, 15, 20]
+const PACES = [15, 20, 25, 20, 20, 20, 20, 10, 20]
 
 export function SlideDeck() {
   const [current, setCurrent] = useState(0)
