@@ -66,3 +66,34 @@ async def score_event_generator(
         # Always clean up the subscriber queue on disconnect
         if queue in score_subscribers:
             score_subscribers.remove(queue)
+
+
+@router.get("/api/stream/scores")
+async def stream_scores(stablecoins: str | None = None) -> StreamingResponse:
+    """SSE endpoint for real-time Liquidity Stress Score updates.
+
+    Opens a persistent connection and streams score events as they are
+    computed by the scoring engine.  A heartbeat event is sent every 30
+    seconds to keep the connection alive through proxies.
+
+    Query params:
+        stablecoins: comma-separated filter, e.g. ?stablecoins=USDC,USDT
+                     Omit to receive updates for all tracked stablecoins.
+
+    Event format:
+        data: {"stablecoin":"USDC","score":68,"level":"elevated",
+               "latency_hours":72,"coverage_ratio":0.88,"timestamp":"..."}
+
+    Heartbeat format:
+        data: {"type":"heartbeat","timestamp":"..."}
+    """
+    coin_list = [c.strip().upper() for c in stablecoins.split(",")] if stablecoins else None
+    return StreamingResponse(
+        score_event_generator(coin_list),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "X-Accel-Buffering": "no",
+            "Connection": "keep-alive",
+        },
+    )
