@@ -6,6 +6,7 @@ import { DashboardLayout } from './layouts/DashboardLayout'
 import { DashboardPage } from './pages/DashboardPage'
 import { MapPage } from './pages/MapPage'
 import { DeveloperPortalPage } from './pages/DeveloperPortalPage'
+import { ApiOnboardingPage } from './pages/ApiOnboardingPage'
 import { StressScoreDetail } from './components/StressScoreDetail'
 import type { StressScore } from './lib/types'
 
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/stablecoin/:symbol" element={<StressScoreDetail />} />
         <Route path="/map" element={<MapPage />} />
         <Route path="/developers" element={<DeveloperPortalPage />} />
+        <Route path="/portal" element={<ApiOnboardingPage />} />
       </Route>
     </Routes>
   )

@@ -138,6 +138,41 @@ export interface DetectedScenario {
   affected_stablecoins: string[]
 }
 
+export interface BacktestEvent {
+  date: string
+  stress_score: number
+  level: string
+  latency_hours: string
+  coverage_ratio: string
+  wam_days: number | null
+  fed_rate_bps: number | null
+  unrealized_losses_B: number | null
+  usdc_peg: number
+  event: string | null
+  dimensions: DimensionScore[]
+  hurricane_category: number | null
+  hurricane_lat: number | null
+  hurricane_lng: number | null
+  bank_avg_ltv: number | null
+  tusd_stress_score: number | null
+}
+
+export interface BacktestResult {
+  name: string
+  description: string
+  timeline: BacktestEvent[]
+  critical_date: string | null
+  key_insight: string | null
+}
+
+export interface BacktestSummary {
+  id: string
+  name: string
+  description: string
+  data_points: number
+  date_range: string
+}
+
 export interface ApiResponse<T> {
   data: T
   error: string | null

@@ -67,9 +67,21 @@ class ScenarioParams(BaseModel):
 class BacktestEvent(BaseModel):
     date: str
     stress_score: float
-    wam_svb_days: Optional[float] = None
-    fed_rate: Optional[float] = None
+    level: str
+    latency_hours: str
+    coverage_ratio: str
+    wam_days: Optional[int] = None
+    fed_rate_bps: Optional[int] = None
+    unrealized_losses_B: Optional[float] = None
+    usdc_peg: float = 1.00
     event: Optional[str] = None
+    dimensions: list[DimensionScore] = []
+    # Hurricane-specific fields
+    hurricane_category: Optional[int] = None
+    hurricane_lat: Optional[float] = None
+    hurricane_lng: Optional[float] = None
+    bank_avg_ltv: Optional[float] = None
+    tusd_stress_score: Optional[float] = None
 
 
 class BacktestResult(BaseModel):

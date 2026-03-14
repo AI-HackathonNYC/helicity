@@ -247,16 +247,32 @@ Helicity is an **API-first data infrastructure product** with a **data-driven ri
 ### feat/svb-backtest
 
 #### SVB Data & Timeline
-- [ ] Create `data/fixtures/svb_timeline.json` — day-by-day Feb 1 – Mar 17, 2023
-- [ ] Write `app/services/backtests/svb.py` — `run_svb_backtest() -> BacktestResult`
-- [ ] Identify day stress score first crossed 75 ("Critical")
+- [x] Create `data/backtests/svb_timeline.json` — 15 daily data points, March 1–15, 2023
+- [x] Write `app/services/backtest_svb.py` — `run_svb_backtest() -> BacktestResult` with dimension breakdowns
+- [x] Identify day stress score first crossed 75 ("Critical") — March 8, 48h before depeg
 
 #### Endpoints
-- [ ] `GET /api/backtests/svb` — returns SVB timeline + stress scores + annotations
+- [x] `GET /api/backtests/svb` — returns SVB timeline + stress scores + dimension breakdowns
+- [x] `GET /api/backtests/svb/summary` — returns key insight: "Flagged critical 48h before depeg"
 
 #### Frontend — Backtest Timeline
 - [ ] Create `BacktestTimeline.tsx` — Recharts LineChart with annotations
 - [ ] Create `TimelineScrubber.tsx` — date slider with summary card
+
+### feat/hurricane-ian-backtest
+
+#### Hurricane Ian Data & Timeline
+- [x] Create `data/backtests/hurricane_ian.json` — 16 daily data points, Sept 20 – Oct 5, 2022
+- [x] Write `app/services/backtest_ian.py` — `run_ian_backtest() -> BacktestResult` with dimension breakdowns
+- [x] Track Cat 4 landfall stress: USDC 28→61, TUSD 31→71, FL bank LTV 0.68→0.76
+
+#### Endpoints
+- [x] `GET /api/backtests/hurricane-ian` — returns Hurricane Ian timeline + stress scores + dimensions
+- [x] `GET /api/backtests/hurricane-ian/summary` — returns key insight: weather tail-risk as primary driver
+- [x] Updated `GET /api/backtests/` list to include both SVB and Hurricane Ian
+
+#### Tests
+- [x] 13 backtest tests passing (6 SVB + 7 Hurricane Ian)
 
 ---
 
@@ -374,4 +390,4 @@ Helicity is an **API-first data infrastructure product** with a **data-driven ri
 | Phase 4: Backtests & Trust Layer | `[ ]` | |
 | Phase 5: Ship | `[ ]` | |
 
-**Last updated:** 2026-03-14 (narrative generation service complete — issue #14 closed)
+**Last updated:** 2026-03-14 (Hurricane Ian backtest + API portal route — issues #16 + #32)
