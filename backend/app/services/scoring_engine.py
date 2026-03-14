@@ -341,63 +341,105 @@ class ScoringEngine:
     # --- Dimension 4: Weather Tail-Risk Multiplier (15% weight) ---
 
     async def _weather_tail_risk(self, reserve: ReserveData) -> DimensionScore:
-        # Fetch active weather alerts for all states where counterparties are located
-        states = set()
-        state_weights: dict[str, float] = {}
-        for cp in reserve.counterparties:
-            if cp.state and len(cp.state) == 2:
-                states.add(cp.state)
-                state_weights[cp.state] = state_weights.get(cp.state, 0) + cp.percentage
-
-        if not states:
-            return DimensionScore(
-                name="Weather Tail-Risk",
-                score=0.0,
-                weight=0.15,
-                weighted_score=0.0,
-                detail="No US-based counterparties to assess weather risk.",
-            )
-
-        severity_map = {"Extreme": 1.0, "Severe": 0.7, "Moderate": 0.4, "Minor": 0.1}
-        total_weather_score = 0.0
-        alert_details = []
+        # Fetch high-resolution 3-day deterministic weather forecasts for counterparty coordinates
+        cp_impacts = []
         source = "live"
+        
+        # Calculate market fragility based on time of day / day of week
+        now = datetime.now(timezone.utc)
+        is_weekend = now.weekday() >= 5
+        is_after_hours = now.hour < 13 or now.hour >= 22  # Outside 9am-5pm EST (14:00-22:00 UTC)
+        
+        time_multiplier = 1.0
+        if is_weekend:
+            time_multiplier = 1.5  # Weekend liquidity gap
+        elif is_after_hours:
+            time_multiplier = 1.25 # After-hours delayed response gap
 
-        for state in states:
+        for cp in reserve.counterparties:
+            if not cp.lat or not cp.lng:
+                continue
+                
             try:
-                result = await self.weather.resolve(f"alerts:{state}")
+                # 1. Fetch deterministic forecast 
+                result = await self.weather.resolve(f"forecast:{cp.lat},{cp.lng}")
                 if result.source == "fixture":
                     source = "fixture"
                 elif result.source == "cache" and source != "fixture":
                     source = "cache"
 
-                if result.data and result.data.get("alert_count", 0) > 0:
-                    max_severity = 0.0
-                    for alert in result.data["alerts"]:
-                        sev = severity_map.get(alert.get("severity", ""), 0.0)
-                        max_severity = max(max_severity, sev)
-                        if sev >= 0.7:
-                            alert_details.append(f"{alert.get('event', 'Alert')} in {state}")
-
-                    weight = state_weights.get(state, 0) / 100.0
-                    # Factor in LTV for banks in this state
-                    ltv_factor = 1.0
-                    for cp in reserve.counterparties:
-                        if cp.state == state and cp.fdic_ltv_ratio:
-                            ltv_factor = max(ltv_factor, cp.fdic_ltv_ratio)
-
-                    total_weather_score += max_severity * weight * ltv_factor * 100
+                if result.data:
+                    # 2. Hazard Intensity Calculation
+                    wind_gusts = result.data.get("max_wind_gust_kmh", 0)
+                    precip_mm = result.data.get("total_precipitation_mm", 0)
+                    
+                    hazard_intensity = 0.0
+                    hazard_notes = []
+                    
+                    # Wind intensity thresholds (km/h) -> ~90km/h = ~55mph (Tropical Storm force)
+                    if wind_gusts > 120:
+                        hazard_intensity += 0.8
+                        hazard_notes.append(f"Hurricane-force gusts ({wind_gusts}km/h)")
+                    elif wind_gusts > 90:
+                        hazard_intensity += 0.4
+                        hazard_notes.append(f"Severe wind ({wind_gusts}km/h)")
+                        
+                    # Precipitation volume thresholds (mm) -> ~75mm = ~3 inches
+                    if precip_mm > 150:
+                        hazard_intensity += 0.7
+                        hazard_notes.append(f"Extreme rainfall ({precip_mm}mm)")
+                    elif precip_mm > 75:
+                        hazard_intensity += 0.3
+                        hazard_notes.append(f"Heavy rain ({precip_mm}mm)")
+                        
+                    hazard_intensity = min(1.0, hazard_intensity)
+                    
+                    # 3. Base node fragility 
+                    ltv_factor = cp.fdic_ltv_ratio or 0.5
+                    
+                    # 4. Total Expected Disruption
+                    # Expected Disruption = Hazard Intensity * Node Fragility * Time-of-Day Multiplier
+                    expected_disruption = hazard_intensity * ltv_factor * time_multiplier
+                    
+                    # Multiply by the percentage of reserves exposed at this node
+                    weight = cp.percentage / 100.0
+                    impact_score = expected_disruption * weight * 100.0
+                    
+                    cp_impacts.append({
+                        "bank": cp.bank_name,
+                        "impact": impact_score,
+                        "intensity": hazard_intensity,
+                        "notes": hazard_notes
+                    })
+                    
             except Exception:
                 continue
 
+        if not cp_impacts:
+            return DimensionScore(
+                name="Weather Tail-Risk",
+                score=0.0,
+                weight=0.15,
+                weighted_score=0.0,
+                detail="No counterparties with geocoordinates to assess quantitative hazard intensity.",
+            )
+
+        total_weather_score = sum(cp["impact"] for cp in cp_impacts)
         score = min(100.0, total_weather_score)
-        detail = f"Active alerts: {', '.join(alert_details) if alert_details else 'None'}. Source: {source}."
+        
+        # Build a highly descriptive detail string
+        significant_hits = [f"{cp['bank']} ({', '.join(cp['notes'])})" for cp in cp_impacts if cp['intensity'] > 0]
+        if significant_hits:
+            detail = f"High-risk exposures: {'; '.join(significant_hits)} | Time Multiplier: {time_multiplier}x"
+        else:
+            detail = f"No severe quantitative weather hazards for counterparties over next 3 days. Time Multiplier: {time_multiplier}x"
+            
         return DimensionScore(
             name="Weather Tail-Risk",
             score=round(score, 1),
             weight=0.15,
             weighted_score=round(score * 0.15, 2),
-            detail=detail,
+            detail=f"{detail} | Source: {source}",
         )
 
     # --- Dimension 5: Counterparty Health (15% weight) ---

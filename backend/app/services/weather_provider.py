@@ -1,7 +1,7 @@
 """Weather data provider — NOAA NWS + Open-Meteo. No API keys required.
 
 NOAA NWS: https://api.weather.gov/alerts/active — User-Agent header only
-Open-Meteo: https://archive-api.open-meteo.com/v1/archive — fully public, 10k req/day
+Open-Meteo: https://api.open-meteo.com/v1/forecast — quantitative 3-day deterministic weather forecasts
 """
 
 from typing import Optional
@@ -13,12 +13,11 @@ from app.services.data_provider import DataProvider
 
 NOAA_ALERTS_URL = "https://api.weather.gov/alerts/active"
 OPENMETEO_ARCHIVE_URL = "https://archive-api.open-meteo.com/v1/archive"
+OPENMETEO_FORECAST_URL = "https://api.open-meteo.com/v1/forecast"
 
 HEADERS = {"User-Agent": "Helicity/1.0 (stablecoin-risk-engine; contact@helicity.dev)"}
-
-
 class WeatherProvider(DataProvider):
-    """Fetches active weather alerts from NOAA NWS and historical data from Open-Meteo."""
+    """Fetches high-resolution deterministic weather forecasts, active alerts, and historical data."""
 
     provider_name = "weather"
 
@@ -27,16 +26,24 @@ class WeatherProvider(DataProvider):
         self.client = httpx.AsyncClient(timeout=15.0, headers=HEADERS)
 
     async def fetch_live(self, source_id: str) -> Optional[dict]:
-        """Fetch weather data. source_id format: 'alerts:{state}' or 'history:{lat},{lng},{start},{end}'.
+        """Fetch weather data. source_id format: 'alerts:{state}' or 'history:{lat},{lng},{start},{end}' or 'forecast:{lat},{lng}'.
 
         Examples:
             source_id='alerts:FL' → active NOAA alerts for Florida
             source_id='history:27.8,-82.6,2022-09-24,2022-09-30' → Open-Meteo historical
+            source_id='forecast:27.8,-82.6' → Open-Meteo 3-day forecast at exact coordinates
         """
         kind, _, params = source_id.partition(":")
 
         if kind == "alerts":
             return await self._fetch_alerts(params if params else None)
+        elif kind == "forecast":
+            parts = params.split(",")
+            if len(parts) == 2:
+                return await self._fetch_forecast(
+                    lat=float(parts[0]),
+                    lng=float(parts[1])
+                )
         elif kind == "history":
             parts = params.split(",")
             if len(parts) == 4:
@@ -47,6 +54,36 @@ class WeatherProvider(DataProvider):
                     end=parts[3],
                 )
         return None
+
+    async def _fetch_forecast(self, lat: float, lng: float) -> Optional[dict]:
+        """Fetch high-resolution 3-day weather forecast (wind gusts, precipitation)."""
+        params = {
+            "latitude": lat,
+            "longitude": lng,
+            "hourly": "precipitation,wind_gusts_10m",
+            "timezone": "auto",
+            "forecast_days": 3,
+            "models": "best_match"
+        }
+        resp = await self.client.get(OPENMETEO_FORECAST_URL, params=params)
+        resp.raise_for_status()
+
+        data = resp.json()
+        hourly = data.get("hourly", {})
+        
+        # Calculate max intensity over the next 3 days
+        max_wind_gust = max(hourly.get("wind_gusts_10m", [0])) if hourly.get("wind_gusts_10m") else 0
+        total_precip = sum(hourly.get("precipitation", [0])) if hourly.get("precipitation") else 0
+        max_precip_rate = max(hourly.get("precipitation", [0])) if hourly.get("precipitation") else 0
+        
+        return {
+            "latitude": lat,
+            "longitude": lng,
+            "max_wind_gust_kmh": max_wind_gust,
+            "total_precipitation_mm": total_precip,
+            "max_precipitation_rate_mm": max_precip_rate,
+            "forecast_days": 3
+        }
 
     async def _fetch_alerts(self, state: Optional[str] = None) -> Optional[dict]:
         """Fetch active NOAA weather alerts, optionally filtered by state."""
