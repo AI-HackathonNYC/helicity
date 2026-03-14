@@ -283,14 +283,17 @@ Helicity is an **API-first data infrastructure product** with a **data-driven ri
 ### feat/ipfs-pinning — Core Infrastructure (Pinata API)
 
 **Backend — IPFS Pinning**
-- [ ] Write `app/services/ipfs.py` — `pin_score_to_ipfs(score_data) -> PinResult`
-- [ ] Endpoint: `POST /api/publish-score` — pins to Pinata, returns CID + gateway URL
-- [ ] Endpoint: `GET /api/score-history/{stablecoin}` — returns historical pinned scores
-- [ ] Auto-pin after every scoring run
-- [ ] Graceful degradation if `PINATA_API_KEY` missing
+- [x] Write `app/services/ipfs.py` — `pin_score_to_ipfs(score_data)` with Pinata API + mock fallback
+- [x] Endpoint: `POST /api/publish-score` — pins to Pinata, returns CID + gateway URL + snapshot
+- [x] Endpoint: `GET /api/scores/verified` — returns all published scores with CIDs
+- [x] Auto-pin after every scoring run (background task in scoring_engine.py)
+- [x] Graceful degradation if `PINATA_API_KEY` missing (returns mock CID)
 
 **Frontend — IPFS Verification Display**
-- [ ] Create `TrustBadge.tsx` — consensus badge + IPFS CID link + "TEE-Ready" label
+- [x] Create `TrustBadge.tsx` — IPFS CID link + model consensus + "TEE-Ready for Chainlink" label
+- [x] Integrate TrustBadge into StressScoreDetail view
+- [x] Add `publishScore()` and `fetchVerifiedScores()` API functions
+- [x] Add `VerifiedScore` TypeScript interface
 
 ---
 

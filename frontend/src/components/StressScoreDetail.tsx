@@ -5,6 +5,7 @@ import { usePolling } from '../hooks/usePolling'
 import { fetchStressScore } from '../lib/api'
 import { DataSourceBadge } from './DataSourceBadge'
 import { NarrativeCard } from './NarrativeCard'
+import { TrustBadge } from './TrustBadge'
 import type { StressScore } from '../lib/types'
 
 function scoreColor(score: number): string {
@@ -142,6 +143,9 @@ export function StressScoreDetail() {
 
       {/* Narrative */}
       <NarrativeCard narrative={score.narrative} />
+
+      {/* Trust & Verification */}
+      <TrustBadge ipfsCid={score.ipfs_cid} jury={score.jury} />
     </div>
   )
 }

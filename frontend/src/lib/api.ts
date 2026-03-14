@@ -1,4 +1,4 @@
-import type { ApiResponse, StressScore, WeatherData, GraphData, ProjectionRequest, ProjectionResult, NarrativeResult, DetectedScenario, BacktestResult, BacktestSummary } from './types'
+import type { ApiResponse, StressScore, WeatherData, GraphData, ProjectionRequest, ProjectionResult, NarrativeResult, DetectedScenario, BacktestResult, BacktestSummary, VerifiedScore } from './types'
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
@@ -56,4 +56,12 @@ export async function fetchBacktests(): Promise<ApiResponse<BacktestSummary[]>> 
 
 export async function fetchBacktest(name: string): Promise<ApiResponse<BacktestResult>> {
   return fetchApi<BacktestResult>(`/api/backtests/${name}`)
+}
+
+export async function publishScore(stablecoin: string): Promise<ApiResponse<VerifiedScore>> {
+  return postApi<VerifiedScore>('/api/publish-score', { stablecoin })
+}
+
+export async function fetchVerifiedScores(): Promise<ApiResponse<VerifiedScore[]>> {
+  return fetchApi<VerifiedScore[]>('/api/scores/verified')
 }

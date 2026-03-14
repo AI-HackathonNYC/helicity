@@ -41,7 +41,7 @@ def envelope(data=None, error=None):
 
 
 # --- Register routers ---
-from app.routers import scores, weather, graph, extraction, onchain, narratives, webhooks, backtest, streaming
+from app.routers import scores, weather, graph, extraction, onchain, narratives, webhooks, backtest, streaming, ipfs
 
 app.include_router(scores.router)
 app.include_router(weather.router)
@@ -52,6 +52,7 @@ app.include_router(narratives.router)
 app.include_router(webhooks.router)
 app.include_router(backtest.router)
 app.include_router(streaming.router)
+app.include_router(ipfs.router)
 
 
 @app.get("/health")

@@ -122,6 +122,38 @@ class ScoringEngine:
         except Exception:
             pass  # Never let pub/sub failure break a scoring run
 
+        # Auto-pin to IPFS in background (non-blocking best-effort)
+        try:
+            from app.services.ipfs import pin_score_to_ipfs, store_published_score
+
+            async def _pin():
+                snapshot = {
+                    "stablecoin": result.stablecoin,
+                    "stress_score": result.stress_score,
+                    "level": result.stress_level,
+                    "latency_hours": result.redemption_latency_hours,
+                    "coverage_ratio": result.liquidity_coverage_ratio,
+                    "timestamp": result.source_timestamp,
+                    "version": "helicity-v1",
+                }
+                if result.jury:
+                    snapshot["claude_score"] = result.jury.claude_score
+                    snapshot["gemini_score"] = result.jury.gemini_score
+                    snapshot["consensus"] = result.jury.consensus
+                pin_result = await pin_score_to_ipfs(snapshot)
+                result.ipfs_cid = pin_result["cid"]
+                store_published_score({
+                    "cid": pin_result["cid"],
+                    "ipfs_url": pin_result["ipfs_url"],
+                    "mock": pin_result["mock"],
+                    "snapshot": snapshot,
+                    "timestamp": result.source_timestamp,
+                })
+
+            asyncio.create_task(_pin())
+        except Exception:
+            pass  # Never let IPFS pinning failure break a scoring run
+
         return result
 
     async def compute_all_scores(self) -> list[StressScoreResult]:

@@ -179,6 +179,14 @@ export interface ApiResponse<T> {
   timestamp: string
 }
 
+export interface VerifiedScore {
+  cid: string
+  ipfs_url: string
+  mock: boolean
+  snapshot: Record<string, unknown>
+  timestamp: string
+}
+
 /** A single event received from the GET /api/stream/scores SSE endpoint. */
 export interface ScoreStreamEvent {
   /** Present on score events; absent on heartbeats. */
