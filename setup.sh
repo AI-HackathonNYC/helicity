@@ -49,6 +49,13 @@ if ! command -v npm &> /dev/null; then
 fi
 
 echo "  npm: $(npm --version)"
+
+if ! command -v bl &> /dev/null; then
+    echo "WARNING: Blaxel CLI (bl) not found. Required for MCP Server deployment."
+    echo "  Install via: brew tap blaxel-ai/blaxel && brew install blaxel"
+else
+    echo "  Blaxel CLI: installed"
+fi
 echo ""
 
 # --- Backend setup ---
@@ -66,7 +73,12 @@ echo "  Installed Python dependencies"
 
 if [ ! -f ".env" ]; then
     cp .env.example .env
-    echo "  Created .env from .env.example — fill in your API keys!"
+    echo "" >> .env
+    echo "# Hackathon Mock Keys & MCP Server" >> .env
+    echo "HELICITY_API_KEY=sk-heli-live-mock-hackathon-key" >> .env
+    echo "BL_WORKSPACE=" >> .env
+    echo "BL_API_KEY=" >> .env
+    echo "  Created .env from .env.example with mock API keys!"
 else
     echo "  .env already exists"
 fi
