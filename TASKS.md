@@ -158,9 +158,19 @@ Helicity is an **API-first data infrastructure product** with a **data-driven ri
 - [ ] Implement tool: `get_active_alerts` — returns weather events + anomalies
 - [ ] Implement tool: `get_score_history(stablecoin)` — returns historical scores with IPFS CIDs
 - [ ] Support stdio transport for local AI agent integration
-- [ ] Support SSE transport for remote AI agent access
+- [ ] Support streamable-http transport for Blaxel deployment
 - [ ] All tool outputs use standard response envelope
 - [ ] Write `backend/tests/test_mcp_server.py` — unit tests for all tools
+
+#### Blaxel Deployment (Sponsor Integration)
+- [ ] Create `backend/blaxel.toml` — Blaxel config (`type = "function"`, runtime transport = `http-stream`)
+- [ ] Create `backend/Dockerfile` — containerized MCP server for Blaxel deployment
+- [ ] Configure MCP server to read `HOST`/`PORT` env vars for Blaxel compatibility
+- [ ] Install Blaxel CLI (`brew tap blaxel-ai/blaxel && brew install blaxel`)
+- [ ] Authenticate with `bl login`
+- [ ] Deploy MCP server to Blaxel with `bl deploy`
+- [ ] Verify live endpoint: `https://run.blaxel.ai/{workspace}/functions/helicity-mcp/mcp`
+- [ ] Add Blaxel API keys to `.env` if needed (`BL_WORKSPACE`, `BL_API_KEY`)
 
 ---
 

@@ -30,6 +30,8 @@ class ScoringEngine:
         self.fdic = FDICProvider(cache)
         self.weather = WeatherProvider(cache)
         self.etherscan = EtherscanProvider(cache)
+        # In-memory store of the last known score per symbol for webhook delta checks
+        self._last_scores: dict[str, float] = {}
 
     async def compute_stress_score(self, symbol: str) -> StressScoreResult:
         """Compute the full 6-dimension stress score for a stablecoin."""
@@ -70,7 +72,7 @@ class ScoringEngine:
                 jury = jury_result
             narrative = await self.llm_jury.generate_narrative(context)
 
-        return StressScoreResult(
+        result = StressScoreResult(
             stablecoin=symbol,
             stress_score=round(composite, 1),
             redemption_latency_hours=latency,
@@ -82,6 +84,17 @@ class ScoringEngine:
             resolution_source=resolution,
             source_timestamp=datetime.now(timezone.utc).isoformat(),
         )
+
+        # Fire webhooks in background if score changed since last run
+        previous_score = self._last_scores.get(symbol)
+        self._last_scores[symbol] = result.stress_score
+        if previous_score is not None:
+            from app.services.webhooks import fire_webhooks
+            asyncio.create_task(
+                fire_webhooks(symbol, previous_score, result.stress_score, result)
+            )
+
+        return result
 
     async def compute_all_scores(self) -> list[StressScoreResult]:
         """Compute stress scores for all tracked stablecoins."""

@@ -39,11 +39,14 @@ def envelope(data=None, error=None):
 
 
 # --- Register routers ---
-from app.routers import scores, weather, graph
+from app.routers import scores, weather, graph, extraction, onchain, webhooks
 
 app.include_router(scores.router)
 app.include_router(weather.router)
 app.include_router(graph.router)
+app.include_router(extraction.router)
+app.include_router(onchain.router)
+app.include_router(webhooks.router)
 
 
 @app.get("/health")
@@ -70,6 +73,11 @@ async def startup():
     # Initialize cache
     await cache.initialize()
     print("  Cache initialized")
+
+    # Initialize webhook database
+    from app.services.webhooks import initialize_db as init_webhooks_db
+    await init_webhooks_db()
+    print("  Webhook database initialized")
 
     # Build knowledge graph from registry fixtures
     from app.services.registry import get_all_symbols, get_reserve_data
