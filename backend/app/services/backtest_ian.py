@@ -43,15 +43,23 @@ def _compute_dimensions_for_date(day: dict) -> list[DimensionScore]:
     # Dimension 4: Weather Tail-Risk (15%) — KEY DRIVER for this backtest
     if category >= 4:
         weather_score = 85.0 + (ltv - 0.70) * 100
+        weather_detail = "Hurricane-force wind | Extreme rainfall | Storm surge proxy triggered | High forecast uncertainty | Active cyclone proximity"
     elif category >= 3:
         weather_score = 60.0 + (ltv - 0.68) * 150
+        weather_detail = "Severe wind | Heavy rain | High forecast uncertainty | Active cyclone proximity"
     elif category >= 2:
         weather_score = 40.0
+        weather_detail = "Severe wind | Heavy rain | Active cyclone proximity"
     elif category >= 1:
         weather_score = 20.0
+        weather_detail = "High forecast uncertainty | Active cyclone proximity"
     else:
         weather_score = 5.0 + max(0, (ltv - 0.72) * 80)  # post-storm LTV residual
+        weather_detail = "Elevated river flood risk"
     weather_score = min(100.0, max(0.0, weather_score))
+    
+    # Append the Time and Source suffix just like the live engine
+    weather_detail = f"{weather_detail} | Time: 1.0x | Source: backtest"
 
     # Dimension 5: Counterparty Health (15%) — FL banks under LTV stress
     ltv_stress = max(0, (ltv - 0.65) * 300)
@@ -87,7 +95,7 @@ def _compute_dimensions_for_date(day: dict) -> list[DimensionScore]:
             score=round(weather_score, 1),
             weight=0.15,
             weighted_score=round(weather_score * 0.15, 2),
-            detail=f"Hurricane Ian Cat {category}." if category else "Post-storm monitoring.",
+            detail=weather_detail,
         ),
         DimensionScore(
             name="Counterparty Health",

@@ -111,7 +111,7 @@ def _compute_dimensions_for_date(day: dict, reserve: dict) -> list[DimensionScor
             score=round(weather_score, 1),
             weight=0.15,
             weighted_score=round(weather_score * 0.15, 2),
-            detail="No active weather events during SVB collapse.",
+            detail="No severe hazards | Time: 1.0x | Source: backtest",
         ),
         DimensionScore(
             name="Counterparty Health",
