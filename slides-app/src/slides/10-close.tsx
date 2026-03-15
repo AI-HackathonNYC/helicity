@@ -2,7 +2,7 @@ import { motion } from "framer-motion"
 import { SlideLayout } from "./slide-layout"
 import { HurricaneRings } from "@/components/ui/hurricane-rings"
 
-import { HelicityLogo } from "@/components/helicity-logo"
+import { KatabaticLogo } from "@/components/katabatic-logo"
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 12 },
@@ -36,7 +36,7 @@ export function SlideClose(_props: { subStep?: number }) {
         >
           <span className="text-white/80 font-medium">That&apos;s what DAO treasuries and AI agents need.</span>
           <br />
-          <span className="text-white/80 font-medium inline-flex items-center gap-1 justify-center">That&apos;s <HelicityLogo size="sm" dark />.</span>
+          <span className="text-white/80 font-medium inline-flex items-center gap-1 justify-center">That&apos;s <KatabaticLogo size="sm" dark />.</span>
         </motion.p>
       </motion.div>
     </SlideLayout>
